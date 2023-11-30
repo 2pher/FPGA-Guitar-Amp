@@ -7,7 +7,7 @@ module PS2_Demo (
 	VolumeOn,
 	PitchOn,
 	DistortionOn,
-	SetVolume,
+	SetVolume, 
 	SetPitch,
 	SetDistortion,
 	
