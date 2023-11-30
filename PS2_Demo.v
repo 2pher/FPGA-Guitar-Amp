@@ -7,7 +7,7 @@ module PS2_Demo (
 	VolumeOn,
 	PitchOn,
 	DistortionOn,
-	SetVolume, 
+	SetVolume,
 	SetPitch,
 	SetDistortion,
 	
@@ -115,26 +115,17 @@ end
 		
 
 // FSM to accept 3 user-inputted numbers
-always @(posedge Clock) 
+always @(*) 
 begin
 	case (current_state)
 		S_MAIN: begin
-			if (VolumeOn) begin
-				if (SetVolume) begin
-					next_state <= S_VOLUME;
-				end
-			end 
-			else if (PitchOn) begin
-				if (SetPitch) begin
-					next_state <= S_PITCH;
-				end
-			end 
-			else if (DistortionOn) begin
-				if (SetDistortion) begin
-					next_state <= S_DISTORTION;
-				end
-			end 
-			else begin
+			if (VolumeOn && SetVolume) begin
+				next_state <= S_VOLUME;
+			end else if (PitchOn && SetPitch) begin
+				next_state <= S_PITCH;
+			end else if (DistortionOn && SetDistortion) begin 
+				next_state <= S_DISTORTION;
+			end else begin
 				next_state <= S_MAIN;
 			end
 		end
@@ -154,7 +145,7 @@ begin
 		S_L1_SAVE: begin next_state <= S_L1_WAIT; end
 		
 		S_L1_WAIT: begin
-			if (loop1 == 24'd12500000) begin
+			if (loop1 == 24'd1) begin
 				next_state <= S_L2;
 			end else begin
 				next_state <= S_L1_WAIT;
@@ -172,7 +163,7 @@ begin
 		S_L2_SAVE: begin next_state <= S_L2_WAIT; end
 		
 		S_L2_WAIT: begin
-			if (loop2 == 24'd12500000) begin
+			if (loop2 == 24'd1) begin
 				next_state <= S_L3;
 			end else begin
 				next_state <= S_L2_WAIT;
@@ -190,7 +181,7 @@ begin
 		S_L3_SAVE: begin next_state <= S_L3_WAIT; end
 		
 		S_L3_WAIT: begin
-			if (loop3 == 24'd12500000) begin
+			if (loop3 == 24'd1) begin
 				next_state <= S_SETDATA;
 			end else begin
 				next_state <= S_L3_WAIT;
@@ -216,16 +207,14 @@ always @(posedge Clock)
 begin
 	if (Reset) begin
 		current_state <= S_MAIN;
-	end else begin
-		if (VolumeGo) begin
-			if (!VolumeOn) begin current_state <= S_MAIN; end
-		end else if (PitchGo) begin
-			if (!PitchOn) begin current_state <= S_MAIN; end
-		end else if (DistortionGo) begin
-			if (!DistortionOn) begin current_state <= S_MAIN; end
-		end else begin
-			current_state <= next_state;
-		end
+	end else if(VolumeGo && !VolumeOn) begin
+		current_state <= S_MAIN;
+	end else if (PitchGo && !PitchOn) begin
+		current_state <= S_MAIN;
+	end else if (DistortionGo && !DistortionOn) begin
+		current_state <= S_MAIN; 
+	end else begin		
+		current_state <= next_state;
 	end
 end
 
@@ -234,6 +223,16 @@ end
 always @(*)
 begin
 	if (Reset) begin
+		VolumeGo <= 1'b0;
+		PitchGo <= 1'b0;
+		DistortionGo <= 1'b0;
+		EffectGo <= 1'b0;
+		//input_num <= 4'b0;
+		loop1 <= 24'b0;
+		loop2 <= 24'b0;
+		loop3 <= 24'b0;
+		data <= 12'b0;
+		final_data <= 7'b0;
 		volume_data <= 7'b0;
 		pitch_data <= 7'b0;
 		distortion_data <= 7'b0;
@@ -243,6 +242,7 @@ begin
 							  PitchGo 		= 1'b0; 
 							  DistortionGo = 1'b0; 
 							  EffectGo 		= 1'b0;
+							  //input_num		= 4'b0;
 							  loop1 			= 24'b0;
 							  loop2 			= 24'b0;
 							  loop3 		 	= 24'b0;

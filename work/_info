@@ -1,0 +1,51 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/chris/Downloads/FPGA_VGA_and_Keyboard
+vPS2_Demo
+!s110 1701376654
+!i10b 1
+!s100 mT6N`E[jAQOXCe8n0MPb:2
+IB2e9_^Rl5f:B6L?LABcP81
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1701376650
+8PS2_Demo.v
+FPS2_Demo.v
+L0 1
+Z2 OV;L;10.5b;63
+r1
+!s85 0
+31
+!s108 1701376654.000000
+!s107 PS2_Demo.v|
+!s90 -reportprogress|300|PS2_Demo.v|
+!i113 1
+Z3 tCvgOpt 0
+n@p@s2_@demo
+vvga_plot
+!s110 1701377134
+!i10b 1
+!s100 ohTVTRj_VNmeg7aL9ng3Q1
+IZ5Q<z_V6JHTDaVO0d[QCY2
+R1
+R0
+w1701376889
+8vga_plot.v
+Fvga_plot.v
+L0 1
+R2
+r1
+!s85 0
+31
+!s108 1701377134.000000
+!s107 vga_plot.v|
+!s90 -reportprogress|300|vga_plot.v|
+!i113 1
+R3
