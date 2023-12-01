@@ -5,6 +5,9 @@ module vga_plot (
 	VolumeTurnedOn,
 	PitchTurnedOn,
 	DistortionTurnedOn,
+	VolumeTurnedOff,
+	PitchTurnedOff,
+	DistortionTurnedOff,
 	VolumeGo,
 	PitchGo,
 	DistortionGo,
@@ -20,12 +23,36 @@ module vga_plot (
 	writeEn	
 );
 
+/*****************************************************************************
+ *                           Parameter Declarations                          *
+ *****************************************************************************/
+
+parameter 	S_IDLE 				= 4'd0,
+				S_RESET				= 4'd1,
+				S_VOLUME_ON 		= 4'd2,
+				S_VOLUME_OFF 		= 4'd3,
+				S_DISTORTION_ON 	= 4'd4,
+				S_DISTORTION_OFF 	= 4'd5,
+				S_PITCH_ON 			= 4'd6,
+				S_PITCH_OFF 		= 4'd7,
+				S_EFFECT 			= 4'd8,
+				S_DRAW_VOLUME 		= 4'd9,
+				S_DRAW_PITCH		= 4'd10,
+				S_DRAW_DISTORTION	= 4'd11,
+
+/*****************************************************************************
+ *                             Port Declarations                             *
+ *****************************************************************************/
+
 // Inputs
 input 		Clock;
 input 		Reset;
-input 		VolumeOn;
-input 		PitchOn;
-input 		DistortionOn;
+input 		VolumeTurnedOn;
+input 		PitchTurnedOn;
+input 		DistortionTurnedOn;
+input 		VolumeTurnedOff;
+input 		PitchTurnedOff;
+input			DistortionTurnedOff;
 input 		VolumeGo;
 input 		PitchGo;
 input 		DistortionGo;
@@ -40,130 +67,226 @@ output reg  [7:0] x;
 output reg 	[6:0] y;
 output reg			writeEn;
 
-reg 		 Done;
-reg [7:0] loopX;
-reg [6:0] loopY;
+reg 		 	Done;
+reg [4:0] 	loopX;
+reg [4:0] 	loopY;
+reg 			Resetting;
+reg 		 	BoxDone;
+reg			BoxDoneX;
+reg			BoxDoneY;
+
+/*****************************************************************************
+ *                 Internal Wires and Registers Declarations                 *
+ *****************************************************************************/
+
+// Internal Registers
+reg		[3:0] current_state;
+reg		[3:0] next_state;
+reg		[
+
+
+/*****************************************************************************
+ *                             Sequential Logic                              *
+ *****************************************************************************/
+
+always @(posedge Clock)
+begin
+	case (current_state)
+		S_IDLE: begin 	 
+			if (VolumeTurnedOn) begin	
+				next_state = S_VOLUME_ON;
+			end else if (VolumeTurnedOff) begin	
+				next_state = S_VOLUME_OFF;
+			end else if (PitchTurnedOn) begin 	
+				next_state = S_PITCH_ON;
+			end else if (PitchTurnedOff) begin 	
+				next_state = S_PITCH_OFF;
+			end else if (DistortionTurnedOn) begin	
+				next_state = S_DISTORTION_ON;
+			end else if (DistortionTurnedOff) begin
+				next_state = S_DISTORTION_OFF;
+			end else if (EffectGo) begin
+				next_state = S_EFFECT;
+			end else begin
+				next_state = S_IDLE;
+			end
+		end
+		S_RESET: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_RESET;
+			end
+		end
+		S_VOLUME_ON: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_VOLUME_ON;
+			end
+		end
+		S_VOLUME_OFF: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_VOLUME_OFF;
+			end
+		end
+		S_PITCH_ON: begin
+			if (BoxDoneDraw) begin
+				next_state <= S_IDLE;
+			end else begin
+				next_state <= S_PITCH_ON;
+			end
+		end
+		S_PITCH_OFF: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_PITCH_OFF;
+			end
+		end
+		S_DISTORTION_ON: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_PITCH_ON;
+			end
+		end
+		S_DISTORTION_OFF: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_VOLUME_ON;
+			end
+		end
+		S_EFFECT: begin
+			if (VolumeGo) begin
+				next_state = S_DRAW_VOLUME;
+			end else if (PitchGo) begin
+				next_state = S_DRAW_PITCH;
+			end else if (DistortionGo) begin
+				next_state = S_DRAW_DISTORTION;
+			end else begin
+				next_state = S_EFFECT;
+			end
+		end
+		S_DRAW_VOLUME: begin
+			if (LineDoneDraw_S || LineDoneDraw_D) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_DRAW_VOLUME;
+			end
+		end
+		S_DRAW_PITCH: begin
+			if (LineDoneDraw_S || LineDoneDraw_D) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_DRAW_PITCH;
+			end
+		end
+		S_DRAW_DISTORTION: begin
+			if (LineDoneDraw_S || LineDoneDraw_D) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_DRAW_DISTORTION;
+			end
+		end
+		default: next_state = S_IDLE;
+	endcase
+end
 
 always @(*)
 begin
 	writeEn <= 1'b0;
-	if (Reset) begin
-		colour <= 12h'222;
-		if (!BoxDone) begin
-			if (!BoxDoneX) begin
-				x[7:0] <= loopX + 8'd25;
-				loopX <= loopX + 1'b1;
-			end else if (!BoxDoneY) begin
-				y[7:0] <= loopY + 7'd21;
-				loopY <= loopY + 1'b1;
-			end else begin
-				loopX <= 8'b0;
-				loopY <= 7'b0;
-			end
-			writeEn <= 1'b1;
-		end else if (!BoxDone) begin
-			if (!BoxDoneX) begin
-				x[7:0] <= loopX + 8'd72;
-				loopX <= loopX + 1'b1;
-			end else if (!BoxDoneY) begin
-				y[7:0] <= loopY + 7'd21;
-				loopY <= loopY + 1'b1;
-			end else begin
-				loopX <= 8'b0;
-				loopY <= 7'b0;
-			end
-			writeEn <= 1'b1;
-		end else if (!BoxDone) begin
-			if (!BoxDoneX) begin
-				x[7:0] <= loopX + 8'd119;
-				loopX <= loopX + 1'b1;
-			end else if (!BoxDoneY) begin
-				y[7:0] <= loopY + 7'd21;
-				loopY <= loopY + 1'b1;
-			end else begin
-				loopX <= 8'b0;
-				loopY <= 7'b0;
-			end
-			writeEn <= 1'b1;
+	case (current_state)
+		S_IDLE: begin 
+			loopX = 5'b0;
+			loopY = 5'b0;
+			BoxDoneDraw = 1'b0;
 		end
-	end else if (VolumeTurnedOn) begin
-		colour <= 12h'2c3;
-	end else if (PitchTurnedOn) begin
-		colour <= 12h'2c3;	
-	end else if (DistortionTurnedOn) begin
-		colour <= 12h'2c3;
-	end else if (EffectGo) begin
+		S_RESET: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_RESET;
+			end
+		end
+		S_VOLUME_ON: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_VOLUME_ON;
+			end
+		end
+		S_VOLUME_OFF: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_VOLUME_OFF;
+			end
+		end
+		S_PITCH_ON: begin
+			if (BoxDoneDraw) begin
+				next_state <= S_IDLE;
+			end else begin
+				next_state <= S_PITCH_ON;
+			end
+		end
+		S_PITCH_OFF: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_PITCH_OFF;
+			end
+		end
+		S_DISTORTION_ON: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_PITCH_ON;
+			end
+		end
+		S_DISTORTION_OFF: begin
+			if (BoxDoneDraw) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_VOLUME_ON;
+			end
+		end
+		S_EFFECT: begin
+			if (VolumeGo) begin
+				next_state = S_DRAW_VOLUME;
+			end else if (PitchGo) begin
+				next_state = S_DRAW_PITCH;
+			end else if (DistortionGo) begin
+				next_state = S_DRAW_DISTORTION;
+			end else begin
+				next_state = S_EFFECT;
+			end
+		end
+		S_DRAW_VOLUME: begin
+			if (LineDoneDraw_S || LineDoneDraw_D) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_DRAW_VOLUME;
+			end
+		end
+		S_DRAW_PITCH: begin
+			if (LineDoneDraw_S || LineDoneDraw_D) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_DRAW_PITCH;
+			end
+		end
+		S_DRAW_DISTORTION: begin
+			if (LineDoneDraw_S || LineDoneDraw_D) begin
+				next_state = S_IDLE;
+			end else begin
+				next_state = S_DRAW_DISTORTION;
+			end
+		end
+	endcase
 end
 
-always @(*)
-begin
-	BoxDone
-	if (loopX == 8'd16) begin BoxDoneX <= 1'b1; end
-	if (loopY == 7'd14) begin BoxDoneY <= 1'b1; end
-end
-
-		
-	
-	
-	
-	
-//		for (index=25; index<=41; index=index+1) begin
-//			for (sub_index=21; sub_index<=7; sub_index=sub_index+1) begin
-//				x[7:0] <= index;
-//				y[6:0] <= sub_index;
-//				colour[11:0] <= 12'h2c3;
-//				writeEn <= 1'b1;
-//			end
-//		end
-//	end else begin
-//		for (index=25; index<=41; index=index+1) begin
-//			for (sub_index=21; sub_index<=27; sub_index=sub_index+1) begin
-//				x[7:0] <= index;
-//				y[6:0] <= sub_index;
-//				colour[11:0] <= 12'h222;
-//				writeEn <= 1'b1;
-//			end
-//		end
-//	end
-//	
-//	if (PitchOn) begin
-//		for (index=72; index<=88; index=index+1) begin
-//			for (sub_index=21; sub_index<=27; sub_index=sub_index+1) begin
-//				x[7:0] <= index;
-//				y[6:0] <= sub_index;
-//				colour[11:0] <= 12'h2c3;
-//				writeEn <= 1'b1;
-//			end
-//		end
-//	end else begin
-//		for (index=72; index<=88; index=index+1) begin
-//			for (sub_index=21; sub_index<=27; sub_index=sub_index+1) begin
-//				x[7:0] <= index;
-//				y[6:0] <= sub_index;
-//				colour[11:0] <= 12'h222;
-//				writeEn <= 1'b1;
-//			end
-//		end
-//	end
-//	
-//	if (DistortionOn) begin
-//		for (index=119; index<=135; index=index+1) begin
-//			for (sub_index=21; sub_index<=27; sub_index=sub_index+1) begin
-//				x[7:0] <= index;
-//				y[6:0] <= sub_index;
-//				colour[11:0] <= 12'h2c3;
-//				writeEn <= 1'b1;
-//			end
-//		end
-//	end else begin
-//		for (index=119; index<=135; index=index+1) begin
-//			for (sub_index=21; sub_index<=27; sub_index=sub_index+1) begin
-//				x[7:0] <= index;
-//				y[6:0] <= sub_index;
-//				colour[11:0] <= 12'h222;
-//				writeEn <= 1'b1;
-//			end
-//		end
-//	end
-end
 endmodule

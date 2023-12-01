@@ -15,6 +15,9 @@ module PS2_Demo (
 	VolumeTurnedOn,
 	PitchTurnedOn,
 	DistortionTurnedOn,
+	VolumeTurnedOff,
+	PitchTurnedOff,
+	DistortionTurnedOff,
 	VolumeGo,
 	PitchGo,
 	DistortionGo,
@@ -29,7 +32,7 @@ module PS2_Demo (
  *                           Parameter Declarations                          *
  *****************************************************************************/
 
- parameter 	S_MAIN 			= 4'd0,
+parameter 	S_MAIN 			= 4'd0,
 				S_VOLUME 		= 4'd1,
 				S_PITCH 			= 4'd2,
 				S_DISTORTION 	= 4'd3,
@@ -62,9 +65,12 @@ input				SetPitch;
 input 			SetDistortion;
 
 // Outputs
-output reg			VolumeTurnedOn,
-output reg			PitchTurnedOn,
-output reg 			DistortionTurnedOn,
+output reg			VolumeTurnedOn;
+output reg			PitchTurnedOn;
+output reg 			DistortionTurnedOn;
+output reg			VolumeTurnedOff;
+output reg			PitchTurnedOff;
+output reg			DistortionTurnedOff;
 output reg			VolumeGo;
 output reg			PitchGo;
 output reg 			DistortionGo;
@@ -211,13 +217,19 @@ end
 
 always @(posedge Clock)
 begin
+	VolumeTurnedOff 		<= 1'b0;
+	PitchTurnedOff 		<= 1'b0;
+	DistortionTurnedOff 	<= 1'b0;
 	if (Reset) begin
 		current_state <= S_MAIN;
 	end else if(VolumeGo && !VolumeOn) begin
+		VolumeTurnedOff <= 1'b1;
 		current_state <= S_MAIN;
 	end else if (PitchGo && !PitchOn) begin
+		VolumeTurnedOff <= 1'b1;
 		current_state <= S_MAIN;
 	end else if (DistortionGo && !DistortionOn) begin
+		VolumeTurnedOff <= 1'b1;
 		current_state <= S_MAIN; 
 	end else begin		
 		current_state <= next_state;

@@ -45,6 +45,9 @@ wire			ps2_key_pressed;
 wire			VolumeTurnedOn;
 wire			PitchTurnedOn;
 wire 			DistortionTurnedOn;
+wire			VolumeTurnedOff;
+wire			PitchTurnedOff;
+wire			DistortionTurnedOff;
 wire 			VolumeGo;
 wire 			PitchGo;
 wire 			DistortionGo;
@@ -91,7 +94,10 @@ vga_plot VGAOutput(
 	.Reset					(~KEY[0]),
 	.VolumeTurnedOn		(VolumeTurnedOn),
 	.PitchTurnedOn			(PitchTurnedOn),
-	.DistortionTurnedOn	(DistortionTurnedOn),	
+	.DistortionTurnedOn	(DistortionTurnedOn),
+	.VolumeTurnedOff		(VolumeTurnedOff),
+	.PitchTurnedOff		(PitchTurnedOff),
+	.DistortionTurnedOff (DistortionTurnedOff),
 	.VolumeGo				(VolumeGo),
 	.PitchGo					(PitchGo),
 	.DistortionGo			(DistortionGo),
@@ -125,6 +131,9 @@ PS2_Demo KeyboardInput (
 	.VolumeTurnedOn		(VolumeTurnedOn),
 	.PitchTurnedOn			(PitchTurnedOn),
 	.DistortionTurnedOn	(DistortionTurnedOn),
+	.VolumeTurnedOff		(VolumeTurnedOff),
+	.PitchTurnedOff		(PitchTurnedOff),
+	.DistortionTurnedOff (DistortionTurnedOff),
 	.VolumeGo				(VolumeGo),
 	.PitchGo					(PitchGo),
 	.DistortionGo			(DistortionGo),
