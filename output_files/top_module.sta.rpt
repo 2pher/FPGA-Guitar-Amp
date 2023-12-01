@@ -1,5 +1,5 @@
 Timing Analyzer report for top_module
-Thu Nov 30 05:35:44 2023
+Fri Dec 01 18:25:33 2023
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -46,17 +46,15 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
  38. Signal Integrity Metrics (Fast 1100mv 85c Model)
  39. Setup Transfers
  40. Hold Transfers
- 41. Recovery Transfers
- 42. Removal Transfers
- 43. Report TCCS
- 44. Report RSKM
- 45. Unconstrained Paths Summary
- 46. Clock Status Summary
+ 41. Report TCCS
+ 42. Report RSKM
+ 43. Unconstrained Paths Summary
+ 44. Clock Status Summary
+ 45. Unconstrained Input Ports
+ 46. Unconstrained Output Ports
  47. Unconstrained Input Ports
  48. Unconstrained Output Ports
- 49. Unconstrained Input Ports
- 50. Unconstrained Output Ports
- 51. Timing Analyzer Messages
+ 49. Timing Analyzer Messages
 
 
 
@@ -101,14 +99,14 @@ refer to the applicable agreement for further details.
 ; Number detected on machine ; 8           ;
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
-; Average used               ; 1.39        ;
+; Average used               ; 1.27        ;
 ; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  13.3%      ;
-;     Processor 3            ;  13.1%      ;
-;     Processor 4            ;  13.0%      ;
+;     Processor 2            ;   9.0%      ;
+;     Processor 3            ;   8.8%      ;
+;     Processor 4            ;   8.7%      ;
 +----------------------------+-------------+
 
 
@@ -118,7 +116,7 @@ refer to the applicable agreement for further details.
 ; Clock Name                                                                       ; Type      ; Period ; Frequency  ; Rise  ; Fall   ; Duty Cycle ; Divide by ; Multiply by ; Phase ; Offset ; Edge List ; Edge Shift ; Inverted ; Master                                                                         ; Source                                                                              ; Targets                                                                              ;
 +----------------------------------------------------------------------------------+-----------+--------+------------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
 ; CLOCK_50                                                                         ; Base      ; 20.000 ; 50.0 MHz   ; 0.000 ; 10.000 ;            ;           ;             ;       ;        ;           ;            ;          ;                                                                                ;                                                                                     ; { CLOCK_50 }                                                                         ;
-; KEY[0]                                                                           ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;                                                                                ;                                                                                     ; { KEY[0] }                                                                           ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; Base      ; 1.000  ; 1000.0 MHz ; 0.000 ; 0.500  ;            ;           ;             ;       ;        ;           ;            ;          ;                                                                                ;                                                                                     ; { PS2_Demo:KeyboardInput|current_state.S_L1 }                                        ;
 ; VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]   ; Generated ; 3.333  ; 300.0 MHz  ; 0.000 ; 1.666  ; 50.00      ; 2         ; 12          ;       ;        ;           ;            ; false    ; CLOCK_50                                                                       ; VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|refclkin      ; { VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0] }   ;
 ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; Generated ; 40.000 ; 25.0 MHz   ; 0.000 ; 20.000 ; 50.00      ; 12        ; 1           ;       ;        ;           ;            ; false    ; VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0] ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|vco0ph[0] ; { VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk } ;
 +----------------------------------------------------------------------------------+-----------+--------+------------+-------+--------+------------+-----------+-------------+-------+--------+-----------+------------+----------+--------------------------------------------------------------------------------+-------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------+
@@ -129,9 +127,9 @@ refer to the applicable agreement for further details.
 +------------+-----------------+----------------------------------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                                       ; Note ;
 +------------+-----------------+----------------------------------------------------------------------------------+------+
-; 125.41 MHz ; 125.41 MHz      ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ;      ;
-; 155.18 MHz ; 155.18 MHz      ; KEY[0]                                                                           ;      ;
-; 173.67 MHz ; 173.67 MHz      ; CLOCK_50                                                                         ;      ;
+; 168.89 MHz ; 168.89 MHz      ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ;      ;
+; 181.46 MHz ; 181.46 MHz      ; CLOCK_50                                                                         ;      ;
+; 185.6 MHz  ; 185.6 MHz       ; PS2_Demo:KeyboardInput|current_state.S_L1                                        ;      ;
 +------------+-----------------+----------------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -147,9 +145,9 @@ HTML report is unavailable in plain text report export.
 +----------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                            ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------------+--------+---------------+
-; KEY[0]                                                                           ; -5.444 ; -350.689      ;
-; CLOCK_50                                                                         ; -3.607 ; -278.407      ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 32.026 ; 0.000         ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; -5.246 ; -324.117      ;
+; CLOCK_50                                                                         ; -2.971 ; -40.736       ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 34.079 ; 0.000         ;
 +----------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -158,28 +156,22 @@ HTML report is unavailable in plain text report export.
 +----------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                            ; Slack ; End Point TNS ;
 +----------------------------------------------------------------------------------+-------+---------------+
-; CLOCK_50                                                                         ; 0.309 ; 0.000         ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.388 ; 0.000         ;
-; KEY[0]                                                                           ; 1.185 ; 0.000         ;
+; CLOCK_50                                                                         ; 0.330 ; 0.000         ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.370 ; 0.000         ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 0.959 ; 0.000         ;
 +----------------------------------------------------------------------------------+-------+---------------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; Slow 1100mV 85C Model Recovery Summary                                                                    ;
-+----------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                            ; Slack  ; End Point TNS ;
-+----------------------------------------------------------------------------------+--------+---------------+
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; -4.284 ; -114.294      ;
-+----------------------------------------------------------------------------------+--------+---------------+
+------------------------------------------
+; Slow 1100mV 85C Model Recovery Summary ;
+------------------------------------------
+No paths to report.
 
 
-+----------------------------------------------------------------------------------------------------------+
-; Slow 1100mV 85C Model Removal Summary                                                                    ;
-+----------------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                            ; Slack ; End Point TNS ;
-+----------------------------------------------------------------------------------+-------+---------------+
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.986 ; 0.000         ;
-+----------------------------------------------------------------------------------+-------+---------------+
+-----------------------------------------
+; Slow 1100mV 85C Model Removal Summary ;
+-----------------------------------------
+No paths to report.
 
 
 +-----------------------------------------------------------------------------------------------------------+
@@ -187,10 +179,10 @@ HTML report is unavailable in plain text report export.
 +----------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                            ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------------+--------+---------------+
-; KEY[0]                                                                           ; -0.273 ; -14.415       ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 0.235  ; 0.000         ;
 ; VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]   ; 1.666  ; 0.000         ;
-; CLOCK_50                                                                         ; 8.873  ; 0.000         ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 18.774 ; 0.000         ;
+; CLOCK_50                                                                         ; 8.848  ; 0.000         ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 18.758 ; 0.000         ;
 +----------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -205,9 +197,9 @@ No synchronizer chains to report.
 +------------+-----------------+----------------------------------------------------------------------------------+------+
 ; Fmax       ; Restricted Fmax ; Clock Name                                                                       ; Note ;
 +------------+-----------------+----------------------------------------------------------------------------------+------+
-; 128.63 MHz ; 128.63 MHz      ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ;      ;
-; 154.97 MHz ; 154.97 MHz      ; KEY[0]                                                                           ;      ;
-; 180.96 MHz ; 180.96 MHz      ; CLOCK_50                                                                         ;      ;
+; 172.47 MHz ; 172.47 MHz      ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ;      ;
+; 185.46 MHz ; 185.46 MHz      ; PS2_Demo:KeyboardInput|current_state.S_L1                                        ;      ;
+; 186.99 MHz ; 186.99 MHz      ; CLOCK_50                                                                         ;      ;
 +------------+-----------------+----------------------------------------------------------------------------------+------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -217,9 +209,9 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                            ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------------+--------+---------------+
-; KEY[0]                                                                           ; -5.453 ; -353.631      ;
-; CLOCK_50                                                                         ; -3.550 ; -252.678      ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 32.226 ; 0.000         ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; -5.182 ; -327.571      ;
+; CLOCK_50                                                                         ; -2.824 ; -37.127       ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 34.202 ; 0.000         ;
 +----------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -228,28 +220,22 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                            ; Slack ; End Point TNS ;
 +----------------------------------------------------------------------------------+-------+---------------+
-; CLOCK_50                                                                         ; 0.290 ; 0.000         ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.387 ; 0.000         ;
-; KEY[0]                                                                           ; 1.211 ; 0.000         ;
+; CLOCK_50                                                                         ; 0.309 ; 0.000         ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.343 ; 0.000         ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 0.900 ; 0.000         ;
 +----------------------------------------------------------------------------------+-------+---------------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; Slow 1100mV 0C Model Recovery Summary                                                                     ;
-+----------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                            ; Slack  ; End Point TNS ;
-+----------------------------------------------------------------------------------+--------+---------------+
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; -4.061 ; -108.438      ;
-+----------------------------------------------------------------------------------+--------+---------------+
+-----------------------------------------
+; Slow 1100mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
 
 
-+----------------------------------------------------------------------------------------------------------+
-; Slow 1100mV 0C Model Removal Summary                                                                     ;
-+----------------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                            ; Slack ; End Point TNS ;
-+----------------------------------------------------------------------------------+-------+---------------+
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.790 ; 0.000         ;
-+----------------------------------------------------------------------------------+-------+---------------+
+----------------------------------------
+; Slow 1100mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
 
 
 +-----------------------------------------------------------------------------------------------------------+
@@ -257,10 +243,10 @@ This panel reports FMAX for every clock in the design, regardless of the user-sp
 +----------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                            ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------------+--------+---------------+
-; KEY[0]                                                                           ; -0.238 ; -12.225       ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 0.274  ; 0.000         ;
 ; VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]   ; 1.666  ; 0.000         ;
-; CLOCK_50                                                                         ; 8.826  ; 0.000         ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 18.753 ; 0.000         ;
+; CLOCK_50                                                                         ; 8.808  ; 0.000         ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 18.739 ; 0.000         ;
 +----------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -275,9 +261,9 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                            ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------------+--------+---------------+
-; KEY[0]                                                                           ; -2.853 ; -169.647      ;
-; CLOCK_50                                                                         ; -2.291 ; -194.807      ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 34.775 ; 0.000         ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; -2.681 ; -143.922      ;
+; CLOCK_50                                                                         ; -2.433 ; -25.373       ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 36.310 ; 0.000         ;
 +----------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -287,27 +273,21 @@ No synchronizer chains to report.
 ; Clock                                                                            ; Slack ; End Point TNS ;
 +----------------------------------------------------------------------------------+-------+---------------+
 ; CLOCK_50                                                                         ; 0.178 ; 0.000         ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.240 ; 0.000         ;
-; KEY[0]                                                                           ; 0.496 ; 0.000         ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.215 ; 0.000         ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 0.537 ; 0.000         ;
 +----------------------------------------------------------------------------------+-------+---------------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; Fast 1100mV 85C Model Recovery Summary                                                                    ;
-+----------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                            ; Slack  ; End Point TNS ;
-+----------------------------------------------------------------------------------+--------+---------------+
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; -2.891 ; -77.044       ;
-+----------------------------------------------------------------------------------+--------+---------------+
+------------------------------------------
+; Fast 1100mV 85C Model Recovery Summary ;
+------------------------------------------
+No paths to report.
 
 
-+----------------------------------------------------------------------------------------------------------+
-; Fast 1100mV 85C Model Removal Summary                                                                    ;
-+----------------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                            ; Slack ; End Point TNS ;
-+----------------------------------------------------------------------------------+-------+---------------+
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.662 ; 0.000         ;
-+----------------------------------------------------------------------------------+-------+---------------+
+-----------------------------------------
+; Fast 1100mV 85C Model Removal Summary ;
+-----------------------------------------
+No paths to report.
 
 
 +-----------------------------------------------------------------------------------------------------------+
@@ -315,10 +295,10 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                            ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------------+--------+---------------+
-; KEY[0]                                                                           ; -0.356 ; -42.571       ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 0.287  ; 0.000         ;
 ; VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]   ; 1.666  ; 0.000         ;
-; CLOCK_50                                                                         ; 8.828  ; 0.000         ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 18.890 ; 0.000         ;
+; CLOCK_50                                                                         ; 8.840  ; 0.000         ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 18.879 ; 0.000         ;
 +----------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -333,9 +313,9 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                            ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------------+--------+---------------+
-; KEY[0]                                                                           ; -2.562 ; -150.268      ;
-; CLOCK_50                                                                         ; -2.071 ; -171.264      ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 35.402 ; 0.000         ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; -2.456 ; -135.954      ;
+; CLOCK_50                                                                         ; -1.864 ; -18.675       ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 36.665 ; 0.000         ;
 +----------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -344,28 +324,22 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------------+-------+---------------+
 ; Clock                                                                            ; Slack ; End Point TNS ;
 +----------------------------------------------------------------------------------+-------+---------------+
-; CLOCK_50                                                                         ; 0.162 ; 0.000         ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.223 ; 0.000         ;
-; KEY[0]                                                                           ; 0.472 ; 0.000         ;
+; CLOCK_50                                                                         ; 0.169 ; 0.000         ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.197 ; 0.000         ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 0.481 ; 0.000         ;
 +----------------------------------------------------------------------------------+-------+---------------+
 
 
-+-----------------------------------------------------------------------------------------------------------+
-; Fast 1100mV 0C Model Recovery Summary                                                                     ;
-+----------------------------------------------------------------------------------+--------+---------------+
-; Clock                                                                            ; Slack  ; End Point TNS ;
-+----------------------------------------------------------------------------------+--------+---------------+
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; -2.602 ; -69.398       ;
-+----------------------------------------------------------------------------------+--------+---------------+
+-----------------------------------------
+; Fast 1100mV 0C Model Recovery Summary ;
+-----------------------------------------
+No paths to report.
 
 
-+----------------------------------------------------------------------------------------------------------+
-; Fast 1100mV 0C Model Removal Summary                                                                     ;
-+----------------------------------------------------------------------------------+-------+---------------+
-; Clock                                                                            ; Slack ; End Point TNS ;
-+----------------------------------------------------------------------------------+-------+---------------+
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.473 ; 0.000         ;
-+----------------------------------------------------------------------------------+-------+---------------+
+----------------------------------------
+; Fast 1100mV 0C Model Removal Summary ;
+----------------------------------------
+No paths to report.
 
 
 +-----------------------------------------------------------------------------------------------------------+
@@ -373,10 +347,10 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------------+--------+---------------+
 ; Clock                                                                            ; Slack  ; End Point TNS ;
 +----------------------------------------------------------------------------------+--------+---------------+
-; KEY[0]                                                                           ; -0.306 ; -36.100       ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 0.325  ; 0.000         ;
 ; VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]   ; 1.666  ; 0.000         ;
-; CLOCK_50                                                                         ; 8.821  ; 0.000         ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 18.886 ; 0.000         ;
+; CLOCK_50                                                                         ; 8.828  ; 0.000         ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 18.882 ; 0.000         ;
 +----------------------------------------------------------------------------------+--------+---------------+
 
 
@@ -391,16 +365,16 @@ No synchronizer chains to report.
 +-----------------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
 ; Clock                                                                             ; Setup    ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +-----------------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
-; Worst-case Slack                                                                  ; -5.453   ; 0.162 ; -4.284   ; 0.473   ; -0.356              ;
-;  CLOCK_50                                                                         ; -3.607   ; 0.162 ; N/A      ; N/A     ; 8.821               ;
-;  KEY[0]                                                                           ; -5.453   ; 0.472 ; N/A      ; N/A     ; -0.356              ;
+; Worst-case Slack                                                                  ; -5.246   ; 0.169 ; N/A      ; N/A     ; 0.235               ;
+;  CLOCK_50                                                                         ; -2.971   ; 0.169 ; N/A      ; N/A     ; 8.808               ;
+;  PS2_Demo:KeyboardInput|current_state.S_L1                                        ; -5.246   ; 0.481 ; N/A      ; N/A     ; 0.235               ;
 ;  VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]   ; N/A      ; N/A   ; N/A      ; N/A     ; 1.666               ;
-;  VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 32.026   ; 0.223 ; -4.284   ; 0.473   ; 18.753              ;
-; Design-wide TNS                                                                   ; -629.096 ; 0.0   ; -114.294 ; 0.0     ; -42.571             ;
-;  CLOCK_50                                                                         ; -278.407 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
-;  KEY[0]                                                                           ; -353.631 ; 0.000 ; N/A      ; N/A     ; -42.571             ;
+;  VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 34.079   ; 0.197 ; N/A      ; N/A     ; 18.739              ;
+; Design-wide TNS                                                                   ; -364.853 ; 0.0   ; 0.0      ; 0.0     ; 0.0                 ;
+;  CLOCK_50                                                                         ; -40.736  ; 0.000 ; N/A      ; N/A     ; 0.000               ;
+;  PS2_Demo:KeyboardInput|current_state.S_L1                                        ; -327.571 ; 0.000 ; N/A      ; N/A     ; 0.000               ;
 ;  VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]   ; N/A      ; N/A   ; N/A      ; N/A     ; 0.000               ;
-;  VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.000    ; 0.000 ; -114.294 ; 0.000   ; 0.000               ;
+;  VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 0.000    ; 0.000 ; N/A      ; N/A     ; 0.000               ;
 +-----------------------------------------------------------------------------------+----------+-------+----------+---------+---------------------+
 
 
@@ -481,11 +455,11 @@ No synchronizer chains to report.
 ; KEY[0]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; CLOCK_50 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SW[7]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; SW[8]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SW[9]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SW[8]    ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; KEY[1]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; KEY[3]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; KEY[2]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; KEY[1]   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 +----------+--------------+-----------------+-----------------+
 
 
@@ -734,11 +708,11 @@ No synchronizer chains to report.
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                                                       ; To Clock                                                                         ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; CLOCK_50                                                                         ; CLOCK_50                                                                         ; 2839     ; 0        ; 0        ; 0        ;
-; KEY[0]                                                                           ; CLOCK_50                                                                         ; 179      ; 428      ; 0        ; 0        ;
-; CLOCK_50                                                                         ; KEY[0]                                                                           ; 0        ; 0        ; 99       ; 0        ;
-; KEY[0]                                                                           ; KEY[0]                                                                           ; 0        ; 0        ; 0        ; 900      ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 6319     ; 0        ; 0        ; 0        ;
+; CLOCK_50                                                                         ; CLOCK_50                                                                         ; 2421     ; 0        ; 0        ; 0        ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; CLOCK_50                                                                         ; 190      ; 2        ; 0        ; 0        ;
+; CLOCK_50                                                                         ; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 99       ; 0        ; 0        ; 0        ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 900      ; 0        ; 0        ; 0        ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 6254     ; 0        ; 0        ; 0        ;
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
@@ -748,32 +722,12 @@ Entries labeled "false path" only account for clock-to-clock false paths and not
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
 ; From Clock                                                                       ; To Clock                                                                         ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; CLOCK_50                                                                         ; CLOCK_50                                                                         ; 2839     ; 0        ; 0        ; 0        ;
-; KEY[0]                                                                           ; CLOCK_50                                                                         ; 179      ; 428      ; 0        ; 0        ;
-; CLOCK_50                                                                         ; KEY[0]                                                                           ; 0        ; 0        ; 99       ; 0        ;
-; KEY[0]                                                                           ; KEY[0]                                                                           ; 0        ; 0        ; 0        ; 900      ;
-; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 6319     ; 0        ; 0        ; 0        ;
+; CLOCK_50                                                                         ; CLOCK_50                                                                         ; 2421     ; 0        ; 0        ; 0        ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; CLOCK_50                                                                         ; 190      ; 2        ; 0        ; 0        ;
+; CLOCK_50                                                                         ; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 99       ; 0        ; 0        ; 0        ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; 900      ; 0        ; 0        ; 0        ;
+; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 6254     ; 0        ; 0        ; 0        ;
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
-Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------+
-; Recovery Transfers                                                                                                                        ;
-+------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; From Clock ; To Clock                                                                         ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; KEY[0]     ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 27       ; 27       ; 0        ; 0        ;
-+------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
-Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
-
-
-+-------------------------------------------------------------------------------------------------------------------------------------------+
-; Removal Transfers                                                                                                                         ;
-+------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; From Clock ; To Clock                                                                         ; RR Paths ; FR Paths ; RF Paths ; FF Paths ;
-+------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
-; KEY[0]     ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; 27       ; 27       ; 0        ; 0        ;
-+------------+----------------------------------------------------------------------------------+----------+----------+----------+----------+
 Entries labeled "false path" only account for clock-to-clock false paths and not path-based false paths. As a result, actual path counts may be lower than reported.
 
 
@@ -796,8 +750,8 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 0     ; 0    ;
 ; Unconstrained Clocks            ; 0     ; 0    ;
-; Unconstrained Input Ports       ; 8     ; 8    ;
-; Unconstrained Input Port Paths  ; 139   ; 139  ;
+; Unconstrained Input Ports       ; 9     ; 9    ;
+; Unconstrained Input Port Paths  ; 273   ; 273  ;
 ; Unconstrained Output Ports      ; 51    ; 51   ;
 ; Unconstrained Output Port Paths ; 215   ; 215  ;
 +---------------------------------+-------+------+
@@ -809,7 +763,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 ; Target                                                                           ; Clock                                                                            ; Type      ; Status      ;
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+-----------+-------------+
 ; CLOCK_50                                                                         ; CLOCK_50                                                                         ; Base      ; Constrained ;
-; KEY[0]                                                                           ; KEY[0]                                                                           ; Base      ; Constrained ;
+; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; PS2_Demo:KeyboardInput|current_state.S_L1                                        ; Base      ; Constrained ;
 ; VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]   ; VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0]   ; Generated ; Constrained ;
 ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk ; Generated ; Constrained ;
 +----------------------------------------------------------------------------------+----------------------------------------------------------------------------------+-----------+-------------+
@@ -820,6 +774,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +------------+--------------------------------------------------------------------------------------+
 ; Input Port ; Comment                                                                              ;
 +------------+--------------------------------------------------------------------------------------+
+; KEY[0]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; KEY[1]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; KEY[2]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; KEY[3]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -895,6 +850,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 +------------+--------------------------------------------------------------------------------------+
 ; Input Port ; Comment                                                                              ;
 +------------+--------------------------------------------------------------------------------------+
+; KEY[0]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; KEY[1]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; KEY[2]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
 ; KEY[3]     ; No input delay, min/max delays, false-path exceptions, or max skew assignments found ;
@@ -971,7 +927,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-    Info: Processing started: Thu Nov 30 05:35:35 2023
+    Info: Processing started: Fri Dec 01 18:25:19 2023
 Info: Command: quartus_sta top_module -c top_module
 Info: qsta_default_script.tcl version: #2
 Warning (20013): Ignored 385 assignments for entity "DE1_SoC" -- entity does not exist in design
@@ -1373,7 +1329,7 @@ Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|vco0ph[0]} -divide_by 12 -duty_cycle 50.00 -name {VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk} {VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk}
 Info (332142): No user constrained base clocks found in the design. Calling "derive_clocks -period 1.0"
 Info (332105): Deriving Clocks
-    Info (332105): create_clock -period 1.000 -name KEY[0] KEY[0]
+    Info (332105): create_clock -period 1.000 -name PS2_Demo:KeyboardInput|current_state.S_L1 PS2_Demo:KeyboardInput|current_state.S_L1
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): Cell: VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL  from: refclkin  to: fbclk
     Info (332098): Cell: VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER  from: vco0ph[0]  to: divclk
@@ -1384,33 +1340,27 @@ Info: Found TIMING_ANALYZER_REPORT_SCRIPT_INCLUDE_DEFAULT_ANALYSIS = ON
 Info: Analyzing Slow 1100mV 85C Model
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -5.444
+Info (332146): Worst-case setup slack is -5.246
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.444            -350.689 KEY[0] 
-    Info (332119):    -3.607            -278.407 CLOCK_50 
-    Info (332119):    32.026               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case hold slack is 0.309
+    Info (332119):    -5.246            -324.117 PS2_Demo:KeyboardInput|current_state.S_L1 
+    Info (332119):    -2.971             -40.736 CLOCK_50 
+    Info (332119):    34.079               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+Info (332146): Worst-case hold slack is 0.330
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.309               0.000 CLOCK_50 
-    Info (332119):     0.388               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-    Info (332119):     1.185               0.000 KEY[0] 
-Info (332146): Worst-case recovery slack is -4.284
+    Info (332119):     0.330               0.000 CLOCK_50 
+    Info (332119):     0.370               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     0.959               0.000 PS2_Demo:KeyboardInput|current_state.S_L1 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 0.235
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -4.284            -114.294 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case removal slack is 0.986
-    Info (332119):     Slack       End Point TNS Clock 
-    Info (332119): ========= =================== =====================
-    Info (332119):     0.986               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case minimum pulse width slack is -0.273
-    Info (332119):     Slack       End Point TNS Clock 
-    Info (332119): ========= =================== =====================
-    Info (332119):    -0.273             -14.415 KEY[0] 
+    Info (332119):     0.235               0.000 PS2_Demo:KeyboardInput|current_state.S_L1 
     Info (332119):     1.666               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0] 
-    Info (332119):     8.873               0.000 CLOCK_50 
-    Info (332119):    18.774               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     8.848               0.000 CLOCK_50 
+    Info (332119):    18.758               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
 Info: Analyzing Slow 1100mV 0C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
@@ -1421,33 +1371,27 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -5.453
+Info (332146): Worst-case setup slack is -5.182
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -5.453            -353.631 KEY[0] 
-    Info (332119):    -3.550            -252.678 CLOCK_50 
-    Info (332119):    32.226               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case hold slack is 0.290
+    Info (332119):    -5.182            -327.571 PS2_Demo:KeyboardInput|current_state.S_L1 
+    Info (332119):    -2.824             -37.127 CLOCK_50 
+    Info (332119):    34.202               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+Info (332146): Worst-case hold slack is 0.309
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.290               0.000 CLOCK_50 
-    Info (332119):     0.387               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-    Info (332119):     1.211               0.000 KEY[0] 
-Info (332146): Worst-case recovery slack is -4.061
+    Info (332119):     0.309               0.000 CLOCK_50 
+    Info (332119):     0.343               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     0.900               0.000 PS2_Demo:KeyboardInput|current_state.S_L1 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 0.274
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -4.061            -108.438 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case removal slack is 0.790
-    Info (332119):     Slack       End Point TNS Clock 
-    Info (332119): ========= =================== =====================
-    Info (332119):     0.790               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case minimum pulse width slack is -0.238
-    Info (332119):     Slack       End Point TNS Clock 
-    Info (332119): ========= =================== =====================
-    Info (332119):    -0.238             -12.225 KEY[0] 
+    Info (332119):     0.274               0.000 PS2_Demo:KeyboardInput|current_state.S_L1 
     Info (332119):     1.666               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0] 
-    Info (332119):     8.826               0.000 CLOCK_50 
-    Info (332119):    18.753               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     8.808               0.000 CLOCK_50 
+    Info (332119):    18.739               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
 Info: Analyzing Fast 1100mV 85C Model
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
@@ -1458,33 +1402,27 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.853
+Info (332146): Worst-case setup slack is -2.681
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.853            -169.647 KEY[0] 
-    Info (332119):    -2.291            -194.807 CLOCK_50 
-    Info (332119):    34.775               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):    -2.681            -143.922 PS2_Demo:KeyboardInput|current_state.S_L1 
+    Info (332119):    -2.433             -25.373 CLOCK_50 
+    Info (332119):    36.310               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
 Info (332146): Worst-case hold slack is 0.178
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
     Info (332119):     0.178               0.000 CLOCK_50 
-    Info (332119):     0.240               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-    Info (332119):     0.496               0.000 KEY[0] 
-Info (332146): Worst-case recovery slack is -2.891
+    Info (332119):     0.215               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     0.537               0.000 PS2_Demo:KeyboardInput|current_state.S_L1 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 0.287
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.891             -77.044 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case removal slack is 0.662
-    Info (332119):     Slack       End Point TNS Clock 
-    Info (332119): ========= =================== =====================
-    Info (332119):     0.662               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case minimum pulse width slack is -0.356
-    Info (332119):     Slack       End Point TNS Clock 
-    Info (332119): ========= =================== =====================
-    Info (332119):    -0.356             -42.571 KEY[0] 
+    Info (332119):     0.287               0.000 PS2_Demo:KeyboardInput|current_state.S_L1 
     Info (332119):     1.666               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0] 
-    Info (332119):     8.828               0.000 CLOCK_50 
-    Info (332119):    18.890               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     8.840               0.000 CLOCK_50 
+    Info (332119):    18.879               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
 Info: Analyzing Fast 1100mV 0C Model
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): Cell: VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL  from: refclkin  to: fbclk
@@ -1493,39 +1431,33 @@ Info (332097): The following timing edges are non-unate.  The Timing Analyzer wi
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
 Critical Warning (332148): Timing requirements not met
     Info (11105): For recommendations on closing timing, run Report Timing Closure Recommendations in the Timing Analyzer.
-Info (332146): Worst-case setup slack is -2.562
+Info (332146): Worst-case setup slack is -2.456
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.562            -150.268 KEY[0] 
-    Info (332119):    -2.071            -171.264 CLOCK_50 
-    Info (332119):    35.402               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case hold slack is 0.162
+    Info (332119):    -2.456            -135.954 PS2_Demo:KeyboardInput|current_state.S_L1 
+    Info (332119):    -1.864             -18.675 CLOCK_50 
+    Info (332119):    36.665               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+Info (332146): Worst-case hold slack is 0.169
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):     0.162               0.000 CLOCK_50 
-    Info (332119):     0.223               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-    Info (332119):     0.472               0.000 KEY[0] 
-Info (332146): Worst-case recovery slack is -2.602
+    Info (332119):     0.169               0.000 CLOCK_50 
+    Info (332119):     0.197               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     0.481               0.000 PS2_Demo:KeyboardInput|current_state.S_L1 
+Info (332140): No Recovery paths to report
+Info (332140): No Removal paths to report
+Info (332146): Worst-case minimum pulse width slack is 0.325
     Info (332119):     Slack       End Point TNS Clock 
     Info (332119): ========= =================== =====================
-    Info (332119):    -2.602             -69.398 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case removal slack is 0.473
-    Info (332119):     Slack       End Point TNS Clock 
-    Info (332119): ========= =================== =====================
-    Info (332119):     0.473               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
-Info (332146): Worst-case minimum pulse width slack is -0.306
-    Info (332119):     Slack       End Point TNS Clock 
-    Info (332119): ========= =================== =====================
-    Info (332119):    -0.306             -36.100 KEY[0] 
+    Info (332119):     0.325               0.000 PS2_Demo:KeyboardInput|current_state.S_L1 
     Info (332119):     1.666               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~FRACTIONAL_PLL|vcoph[0] 
-    Info (332119):     8.821               0.000 CLOCK_50 
-    Info (332119):    18.886               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
+    Info (332119):     8.828               0.000 CLOCK_50 
+    Info (332119):    18.882               0.000 VGA|mypll|altpll_component|auto_generated|generic_pll1~PLL_OUTPUT_COUNTER|divclk 
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 393 warnings
     Info: Peak virtual memory: 5193 megabytes
-    Info: Processing ended: Thu Nov 30 05:35:44 2023
-    Info: Elapsed time: 00:00:09
-    Info: Total CPU time (on all processors): 00:00:08
+    Info: Processing ended: Fri Dec 01 18:25:33 2023
+    Info: Elapsed time: 00:00:14
+    Info: Total CPU time (on all processors): 00:00:05
 
 

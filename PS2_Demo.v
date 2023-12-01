@@ -240,10 +240,10 @@ end
 // Control Signals
 always @(*)
 begin
-	VolumeTurnedOn 		<= 1'b0;
-	PitchTurnedOn 			<= 1'b0;
-	DistortionTurnedOn 	<= 1'b0;
-	EffectGo					<= 1'b0;
+	VolumeTurnedOn 		= 1'b0;
+	PitchTurnedOn 			= 1'b0;
+	DistortionTurnedOn 	= 1'b0;
+	EffectGo					= 1'b0;
 	if (Reset) begin
 		VolumeGo <= 1'b0;
 		PitchGo <= 1'b0;

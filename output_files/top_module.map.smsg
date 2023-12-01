@@ -1,1 +1,2 @@
-Warning (10268): Verilog HDL information at PS2_Demo.v(231): always construct contains both blocking and non-blocking assignments File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 231
+Warning (10268): Verilog HDL information at PS2_Demo.v(243): always construct contains both blocking and non-blocking assignments File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
+Warning (10268): Verilog HDL information at vga_plot.v(87): always construct contains both blocking and non-blocking assignments File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 87

@@ -43,21 +43,3 @@ current_state.S_L3_SAVE 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1
 current_state.S_L3_WAIT 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
 current_state.S_SETDATA 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
 current_state.S_OUTPUT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
-
-State Machine - |top_module|PS2_Demo:KeyboardInput|next_state
-Name next_state.S_OUTPUT next_state.S_SETDATA next_state.S_L3_WAIT next_state.S_L3_SAVE next_state.S_L3 next_state.S_L2_WAIT next_state.S_L2_SAVE next_state.S_L2 next_state.S_L1_WAIT next_state.S_L1_SAVE next_state.S_L1 next_state.S_DISTORTION next_state.S_PITCH next_state.S_VOLUME next_state.S_MAIN 
-next_state.S_MAIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-next_state.S_VOLUME 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
-next_state.S_PITCH 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
-next_state.S_DISTORTION 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
-next_state.S_L1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
-next_state.S_L1_SAVE 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
-next_state.S_L1_WAIT 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
-next_state.S_L2 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
-next_state.S_L2_SAVE 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
-next_state.S_L2_WAIT 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
-next_state.S_L3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
-next_state.S_L3_SAVE 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
-next_state.S_L3_WAIT 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
-next_state.S_SETDATA 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
-next_state.S_OUTPUT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
