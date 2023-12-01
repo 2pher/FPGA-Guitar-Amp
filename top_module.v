@@ -42,6 +42,9 @@ output [7:0] VGA_B;   				//	VGA Blue[7:0]
 // Internal wires
 wire 	[7:0]	ps2_key_data;
 wire			ps2_key_pressed;
+wire			VolumeTurnedOn;
+wire			PitchTurnedOn;
+wire 			DistortionTurnedOn;
 wire 			VolumeGo;
 wire 			PitchGo;
 wire 			DistortionGo;
@@ -86,16 +89,16 @@ vga_plot VGAOutput(
 	// Inputs
 	.Clock					(CLOCK_50),
 	.Reset					(~KEY[0]),
-	.VolumeOn				(SW[9]),
-	.PitchOn				(SW[8]),
-	.DistortionOn		(SW[7]),	
+	.VolumeTurnedOn		(VolumeTurnedOn),
+	.PitchTurnedOn			(PitchTurnedOn),
+	.DistortionTurnedOn	(DistortionTurnedOn),	
 	.VolumeGo				(VolumeGo),
-	.PitchGo				(PitchGo),
-	.DistortionGo		(DistortionGo),
+	.PitchGo					(PitchGo),
+	.DistortionGo			(DistortionGo),
 	.EffectGo				(EffectGo),
 	.volume_data			(volume_data),
-	.pitch_data			(pitch_data),
-	.distortion_data	(distortion_data),
+	.pitch_data				(pitch_data),
+	.distortion_data		(distortion_data),
 	
 	//Outputs
 	.colour				(colour),
@@ -107,26 +110,29 @@ vga_plot VGAOutput(
 
 PS2_Demo KeyboardInput (
 	// Inputs
-	.Clock				(CLOCK_50),
-	.Reset				(~KEY[0]),
-	.ps2_key_data		(ps2_key_data),
-	.ps2_key_pressed	(ps2_key_pressed),
-	.VolumeOn			(SW[9]),
-	.PitchOn				(SW[8]),
-	.DistortionOn		(SW[7]),
-	.SetVolume			(~KEY[3]),
-	.SetPitch			(~KEY[2]),
-	.SetDistortion		(~KEY[1]),
+	.Clock					(CLOCK_50),
+	.Reset					(~KEY[0]),
+	.ps2_key_data			(ps2_key_data),
+	.ps2_key_pressed		(ps2_key_pressed),
+	.VolumeOn				(SW[9]),
+	.PitchOn					(SW[8]),
+	.DistortionOn			(SW[7]),
+	.SetVolume				(~KEY[3]),
+	.SetPitch				(~KEY[2]),
+	.SetDistortion			(~KEY[1]),
 	
 	// Outputs
-	.VolumeGo			(VolumeGo),
-	.PitchGo				(PitchGo),
-	.DistortionGo		(DistortionGo),
-	.EffectGo			(EffectGo),
-	.volume_data		(volume_data),
-	.pitch_data			(pitch_data),
-	.distortion_data  (distortion_data),
-	.data					(data)
+	.VolumeTurnedOn		(VolumeTurnedOn),
+	.PitchTurnedOn			(PitchTurnedOn),
+	.DistortionTurnedOn	(DistortionTurnedOn),
+	.VolumeGo				(VolumeGo),
+	.PitchGo					(PitchGo),
+	.DistortionGo			(DistortionGo),
+	.EffectGo				(EffectGo),
+	.volume_data			(volume_data),
+	.pitch_data				(pitch_data),
+	.distortion_data 		(distortion_data),
+	.data						(data)
 );
 
 

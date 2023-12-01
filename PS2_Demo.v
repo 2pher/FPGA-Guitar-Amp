@@ -12,6 +12,9 @@ module PS2_Demo (
 	SetDistortion,
 	
 	// Outputs
+	VolumeTurnedOn,
+	PitchTurnedOn,
+	DistortionTurnedOn,
 	VolumeGo,
 	PitchGo,
 	DistortionGo,
@@ -59,6 +62,9 @@ input				SetPitch;
 input 			SetDistortion;
 
 // Outputs
+output reg			VolumeTurnedOn,
+output reg			PitchTurnedOn,
+output reg 			DistortionTurnedOn,
 output reg			VolumeGo;
 output reg			PitchGo;
 output reg 			DistortionGo;
@@ -222,11 +228,14 @@ end
 // Control Signals
 always @(*)
 begin
+	VolumeTurnedOn 		<= 1'b0;
+	PitchTurnedOn 			<= 1'b0;
+	DistortionTurnedOn 	<= 1'b0;
+	EffectGo					<= 1'b0;
 	if (Reset) begin
 		VolumeGo <= 1'b0;
 		PitchGo <= 1'b0;
 		DistortionGo <= 1'b0;
-		EffectGo <= 1'b0;
 		//input_num <= 4'b0;
 		loop1 <= 24'b0;
 		loop2 <= 24'b0;
@@ -249,9 +258,9 @@ begin
 							  data			= 12'b0;
 							  final_data 	= 7'b0;
 					  end
-			S_VOLUME: VolumeGo = 1'b1;
-			S_PITCH: PitchGo = 1'b1;
-			S_DISTORTION: DistortionGo = 1'b1;
+			S_VOLUME: begin VolumeGo = 1'b1; VolumeTurnedOn = 1'b1; end
+			S_PITCH: begin PitchGo = 1'b1; PitchTurnedOn = 1'b1; end
+			S_DISTORTION: begin DistortionGo = 1'b1; DistortionTurnedOn = 1'b1; end
 			S_L1_SAVE: data [11:8] = input_num;
 			S_L1_WAIT: loop1 = loop1 + 1'b1;
 			S_L2_SAVE: data  [7:4] = input_num;

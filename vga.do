@@ -28,6 +28,102 @@ run 1ns
 # S_MAIN
 force {VolumeOn} 1
 force {Clock} 1
+run 1000000000000ns
+force {Clock} 0
+run 1000000000000ns
+force {Clock} 1
+run 1000000000000ns
+force {Clock} 0
+run 1000000000000ns
+force {Clock} 1
+run 1000000000000ns
+force {Clock} 0
+run 1000000000000ns
+force {Clock} 1
+run 1000000000000ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
 run 1ns
 force {Clock} 0
 run 1ns
@@ -115,6 +211,11 @@ force {Clock} 1
 run 1ns
 force {Clock} 0
 run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {VolumeOn} 0
 force {Clock} 1
 run 1ns
 force {Clock} 0
