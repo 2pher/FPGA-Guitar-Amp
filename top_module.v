@@ -2,6 +2,7 @@ module top_module (
 	CLOCK_50,
 	SW,
 	KEY,
+	HEX0
 	HEX5,
 	HEX4,
 	HEX3,
@@ -27,6 +28,7 @@ inout PS2_CLK;
 inout	PS2_DAT;
 
 // Outputs
+output [6:0] HEX0;
 output [6:0] HEX5;
 output [6:0] HEX4;
 output [6:0] HEX3;
@@ -56,6 +58,7 @@ wire  [6:0] volume_data;
 wire  [6:0] pitch_data;
 wire  [6:0] distortion_data;
 wire [11:0] data;
+wire  [3:0] state;
 // Create the colour, x, y and writeEn wires that are inputs to the controller.
 wire [11:0] colour;
 wire [7:0] x;
@@ -141,7 +144,8 @@ PS2_Demo KeyboardInput (
 	.volume_data			(volume_data),
 	.pitch_data				(pitch_data),
 	.distortion_data 		(distortion_data),
-	.data						(data)
+	.data						(data),
+	.state					(state)
 );
 
 
@@ -182,6 +186,14 @@ Hexadecimal_To_Seven_Segment Segment2 (
 
 	// Outputs
 	.seven_seg_display	(HEX3)
+);
+
+Hexadecimal_To_Seven_Segment Segment2 (
+	// Inputs
+	.hex_number			(state),
+
+	// Outputs
+	.seven_seg_display	(HEX0)
 );
 
 endmodule 

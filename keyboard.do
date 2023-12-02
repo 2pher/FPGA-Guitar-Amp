@@ -96,3 +96,67 @@ force {Clock} 1
 run 1ns
 force {Clock} 0
 run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {ps2_key_pressed} 1
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {ps2_key_pressed} 0
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {ps2_key_data[7]} 0
+force {ps2_key_data[6]} 1
+force {ps2_key_data[5]} 0
+force {ps2_key_data[4]} 1
+force {ps2_key_data[3]} 1
+force {ps2_key_data[2]} 0
+force {ps2_key_data[1]} 0
+force {ps2_key_data[0]} 1
+force {ps2_key_pressed} 1
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+force {Clock} 1
+run 1ns
+force {Clock} 0
+run 1ns
+

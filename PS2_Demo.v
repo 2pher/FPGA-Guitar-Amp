@@ -25,7 +25,8 @@ module PS2_Demo (
 	volume_data,
 	pitch_data,
 	distortion_data,
-	data
+	data,
+	state
 );
 
 /*****************************************************************************
@@ -79,6 +80,7 @@ output reg 	[6:0] volume_data;
 output reg 	[6:0] pitch_data;
 output reg 	[6:0] distortion_data;
 output reg [11:0] data;
+output reg  [3:0] state;
 
 
 /*****************************************************************************
@@ -131,84 +133,92 @@ always @(*)
 begin
 	case (current_state)
 		S_MAIN: begin
+			state = 4'd0;
 			if (VolumeOn && SetVolume) begin
-				next_state <= S_VOLUME;
+				next_state = S_VOLUME;
 			end else if (PitchOn && SetPitch) begin
-				next_state <= S_PITCH;
+				next_state = S_PITCH;
 			end else if (DistortionOn && SetDistortion) begin 
-				next_state <= S_DISTORTION;
+				next_state = S_DISTORTION;
 			end else begin
-				next_state <= S_MAIN;
+				next_state = S_MAIN;
 			end
 		end
 		
 		// Purpose of these states is to set control signals
-		S_VOLUME: 		begin next_state <= S_L1;	end
-		S_PITCH: 		begin next_state <= S_L1;	end
-		S_DISTORTION: 	begin next_state <= S_L1;	end
+		S_VOLUME: 		begin state = 4'd1; next_state = S_L1;	end
+		S_PITCH: 		begin state = 4'd2; next_state = S_L1;	end
+		S_DISTORTION: 	begin state = 4'd3; next_state = S_L1;	end
 		
 		S_L1: begin
+			state = 4'd4;
 			if (ps2_key_pressed) begin
-				next_state <= S_L1_SAVE;
+				next_state = S_L1_SAVE;
 			end else
-				next_state <= S_L1;
+				next_state = S_L1;
 		end
 		
-		S_L1_SAVE: begin next_state <= S_L1_WAIT; end
+		S_L1_SAVE: begin state = 4'd5; next_state = S_L1_WAIT; end
 		
 		S_L1_WAIT: begin
+			state = 4'd6; 
 			if (loop1 == 24'd1) begin
-				next_state <= S_L2;
+				next_state = S_L2;
 			end else begin
-				next_state <= S_L1_WAIT;
+				next_state = S_L1_WAIT;
 			end
 		end
 		
 		S_L2: begin
+			state = 4'd7; 
 			if (ps2_key_pressed) begin
-				next_state <= S_L2_SAVE;
+				next_state = S_L2_SAVE;
 			end else begin
-				next_state <= S_L2;
+				next_state = S_L2;
 			end
 		end
 		
-		S_L2_SAVE: begin next_state <= S_L2_WAIT; end
+		S_L2_SAVE: begin state = 4'd8; next_state <= S_L2_WAIT; end
 		
 		S_L2_WAIT: begin
+			state = 4'd9; 
 			if (loop2 == 24'd1) begin
-				next_state <= S_L3;
+				next_state = S_L3;
 			end else begin
-				next_state <= S_L2_WAIT;
+				next_state = S_L2_WAIT;
 			end
 		end
 		
 		S_L3: begin
+			state = 4'd10; 
 			if (ps2_key_pressed) begin
-				next_state <= S_L3_SAVE;
+				next_state = S_L3_SAVE;
 			end else begin
-				next_state <= S_L3;
+				next_state = S_L3;
 			end
 		end
 		
-		S_L3_SAVE: begin next_state <= S_L3_WAIT; end
+		S_L3_SAVE: begin state = 4'd11; next_state = S_L3_WAIT; end
 		
 		S_L3_WAIT: begin
+			state = 4'd12; 
 			if (loop3 == 24'd1) begin
-				next_state <= S_SETDATA;
+				next_state = S_SETDATA;
 			end else begin
-				next_state <= S_L3_WAIT;
+				next_state = S_L3_WAIT;
 			end
 		end
 		
-		S_SETDATA: begin 
+		S_SETDATA: begin
+			state = 4'd13; 
 			if (ps2_key_data == 8'h5A) begin
-				next_state <= S_OUTPUT;
+				next_state = S_OUTPUT;
 			end else begin
-				next_state <= S_SETDATA; 
+				next_state = S_SETDATA; 
 			end
 		end
 		
-		S_OUTPUT: begin next_state <= S_MAIN; end
+		S_OUTPUT: begin state = 4'd14; next_state = S_MAIN; end
 		
 		default: next_state <= S_MAIN;
 	endcase
