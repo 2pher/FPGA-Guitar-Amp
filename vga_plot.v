@@ -76,7 +76,11 @@ reg		[3:0] current_state;
 reg		[3:0] next_state;
 reg 			 	Done;
 reg 		[4:0] loopX;
-reg 		[4:0] loopY;
+reg 		[3:0] loopY;
+reg		[3:0]	loop1;
+reg		[3:0] loop2;
+reg		[3:0] loop3;
+
 reg 		BoxDoneDraw;
 reg		LineDoneDraw;
 
@@ -87,8 +91,10 @@ reg		LineDoneDraw;
 always @(posedge Clock)
 begin
 	case (current_state)
-		S_IDLE: begin 	 
-			if (VolumeTurnedOn) begin	
+		S_IDLE: begin
+			if (Reset) begin
+				next_state = S_RESET;
+			end else if (VolumeTurnedOn) begin	
 				next_state = S_VOLUME_ON;
 			end else if (VolumeTurnedOff) begin	
 				next_state = S_VOLUME_OFF;
@@ -100,88 +106,81 @@ begin
 				next_state = S_DISTORTION_ON;
 			end else if (DistortionTurnedOff) begin
 				next_state = S_DISTORTION_OFF;
-			end else if (EffectGo) begin
-				next_state = S_EFFECT;
+			end else if (EffectGo && VolumeGo) begin
+				next_state = S_DRAW_VOLUME;
+			end else if (EffectGo && PitchGo) begin
+				next_state = S_DRAW_PITCH;
+			end else if (EffectGo && DistortionGo) begin
+				next_state = S_DRAW_DISTORTION;
 			end else begin
 				next_state = S_IDLE;
 			end
 		end
 		S_RESET: begin
-			if (BoxDoneDraw) begin
+			if (loop1 == 3'd7 && loop2 == 3'd7 && loop3 == 3'd7) begin
 				next_state = S_IDLE;
 			end else begin
 				next_state = S_RESET;
 			end
 		end
 		S_VOLUME_ON: begin
-			if (BoxDoneDraw) begin
+			if (loopX == 16 && loopY == 6) begin
 				next_state = S_IDLE;
 			end else begin
 				next_state = S_VOLUME_ON;
 			end
 		end
 		S_VOLUME_OFF: begin
-			if (BoxDoneDraw) begin
+			if (loopX == 16 && loopY == 6) begin
 				next_state = S_IDLE;
 			end else begin
 				next_state = S_VOLUME_OFF;
 			end
 		end
 		S_PITCH_ON: begin
-			if (BoxDoneDraw) begin
+			if (loopX == 16 && loopY == 6) begin
 				next_state <= S_IDLE;
 			end else begin
 				next_state <= S_PITCH_ON;
 			end
 		end
 		S_PITCH_OFF: begin
-			if (BoxDoneDraw) begin
+			if (loopX == 16 && loopY == 6) begin
 				next_state = S_IDLE;
 			end else begin
 				next_state = S_PITCH_OFF;
 			end
 		end
 		S_DISTORTION_ON: begin
-			if (BoxDoneDraw) begin
+			if (loopX == 16 && loopY == 6) begin
 				next_state = S_IDLE;
 			end else begin
 				next_state = S_PITCH_ON;
 			end
 		end
 		S_DISTORTION_OFF: begin
-			if (BoxDoneDraw) begin
+			if (loopX == 16 && loopY == 6) begin
 				next_state = S_IDLE;
 			end else begin
 				next_state = S_VOLUME_ON;
 			end
 		end
-		S_EFFECT: begin
-			if (VolumeGo) begin
-				next_state = S_DRAW_VOLUME;
-			end else if (PitchGo) begin
-				next_state = S_DRAW_PITCH;
-			end else if (DistortionGo) begin
-				next_state = S_DRAW_DISTORTION;
-			end else begin
-				next_state = S_EFFECT;
-			end
-		end
 		S_DRAW_VOLUME: begin
-			if (LineDoneDraw) begin
+			if (loopS == 7 || loopD == 6) begin
 				next_state = S_IDLE;
 			end else begin
 				next_state = S_DRAW_VOLUME;
 			end
 		end
 		S_DRAW_PITCH: begin
-			if (LineDoneDraw) begin
+			if (loopS == 7 || loopD == 6) begin
 				next_state = S_IDLE;
 			end else begin
 				next_state = S_DRAW_PITCH;
 			end
 		end
 		S_DRAW_DISTORTION: begin
-			if (LineDoneDraw) begin
+			if (loopS == 7 || loopD == 6) begin
 				next_state = S_IDLE;
 			end else begin
 				next_state = S_DRAW_DISTORTION;
@@ -190,6 +189,34 @@ begin
 		default: next_state = S_IDLE;
 	endcase
 end
+
+// Control signals
+always @(posedge Clock)
+begin
+	case (current_state)
+		S_IDLE: begin 
+			Resetting = 1'b0;
+			DrawVolumeBox = 1'b0;
+			DrawPitchBox = 1'b0;
+			DrawDistortionBox = 1'b0;
+			DrawVolumeLine = 1'b0;
+			DrawPitchGo = 1'b0;
+			Draw
+		end
+		S_RESET: begin Resetting = 1'b1; end
+		S_VOLUME_ON: begin DrawVolumeBox = 1'b1; end
+		S_VOLUME_OFF: begin DrawVolumeBox = 1'b1; end
+		S_PITCH_ON: begin DrawPitchBox = 1'b1; end
+		S_PITCH_OFF: begin DrawPitchBox = 1'b1; end
+		S_DISTORTION_ON: begin DrawDistortionBox = 1'b1; end
+		S_DISTORTION_OFF: begin DrawDistortionBox = 1'b1; end
+		S_DRAW_VOLUME: begin end
+		S_DRAW_PITCH: begin end
+		S_DRAW_DISTORTION: begin end
+	endcase
+end
+		
+	
 
 always @(*)
 begin

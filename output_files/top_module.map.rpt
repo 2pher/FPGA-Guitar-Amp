@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_module
-Fri Dec 01 18:23:29 2023
+Sat Dec 02 02:10:10 2023
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -18,7 +18,7 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
  10. State Machine - |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter
  11. State Machine - |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver
  12. State Machine - |top_module|PS2_Demo:KeyboardInput|current_state
- 13. User-Specified and Inferred Latches
+ 13. State Machine - |top_module|PS2_Demo:KeyboardInput|next_state
  14. Registers Removed During Synthesis
  15. Removed Registers Triggering Further Register Optimizations
  16. General Register Statistics
@@ -67,14 +67,14 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Dec 01 18:23:29 2023       ;
+; Analysis & Synthesis Status     ; Successful - Sat Dec 02 02:10:09 2023       ;
 ; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                   ; top_module                                  ;
 ; Top-level Entity Name           ; top_module                                  ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 139                                         ;
-; Total pins                      ; 67                                          ;
+; Total registers                 ; 201                                         ;
+; Total pins                      ; 74                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 230,400                                     ;
 ; Total DSP Blocks                ; 0                                           ;
@@ -187,8 +187,7 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-;     Processors 3-4         ;   0.0%      ;
+;     Processors 2-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -230,36 +229,36 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+----------------------------------+-------------------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                ;
-+---------------------------------------------+--------------+
-; Resource                                    ; Usage        ;
-+---------------------------------------------+--------------+
-; Estimate of Logic utilization (ALMs needed) ; 264          ;
-;                                             ;              ;
-; Combinational ALUT usage for logic          ; 486          ;
-;     -- 7 input functions                    ; 0            ;
-;     -- 6 input functions                    ; 38           ;
-;     -- 5 input functions                    ; 54           ;
-;     -- 4 input functions                    ; 131          ;
-;     -- <=3 input functions                  ; 263          ;
-;                                             ;              ;
-; Dedicated logic registers                   ; 139          ;
-;                                             ;              ;
-; I/O pins                                    ; 67           ;
-; Total MLAB memory bits                      ; 0            ;
-; Total block memory bits                     ; 230400       ;
-;                                             ;              ;
-; Total DSP Blocks                            ; 0            ;
-;                                             ;              ;
-; Total PLLs                                  ; 1            ;
-;     -- PLLs                                 ; 1            ;
-;                                             ;              ;
-; Maximum fan-out node                        ; KEY[0]~input ;
-; Maximum fan-out                             ; 157          ;
-; Total fan-out                               ; 2755         ;
-; Average fan-out                             ; 3.45         ;
-+---------------------------------------------+--------------+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimate of Logic utilization (ALMs needed) ; 161            ;
+;                                             ;                ;
+; Combinational ALUT usage for logic          ; 287            ;
+;     -- 7 input functions                    ; 0              ;
+;     -- 6 input functions                    ; 30             ;
+;     -- 5 input functions                    ; 45             ;
+;     -- 4 input functions                    ; 64             ;
+;     -- <=3 input functions                  ; 148            ;
+;                                             ;                ;
+; Dedicated logic registers                   ; 201            ;
+;                                             ;                ;
+; I/O pins                                    ; 74             ;
+; Total MLAB memory bits                      ; 0              ;
+; Total block memory bits                     ; 230400         ;
+;                                             ;                ;
+; Total DSP Blocks                            ; 0              ;
+;                                             ;                ;
+; Total PLLs                                  ; 1              ;
+;     -- PLLs                                 ; 1              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; CLOCK_50~input ;
+; Maximum fan-out                             ; 208            ;
+; Total fan-out                               ; 2373           ;
+; Average fan-out                             ; 3.52           ;
++---------------------------------------------+----------------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -267,14 +266,15 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------+------------------------------+--------------+
 ; Compilation Hierarchy Node                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                        ; Entity Name                  ; Library Name ;
 +---------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------+------------------------------+--------------+
-; |top_module                                             ; 486 (1)             ; 139 (0)                   ; 230400            ; 0          ; 67   ; 0            ; |top_module                                                                                                ; top_module                   ; work         ;
+; |top_module                                             ; 287 (1)             ; 201 (0)                   ; 230400            ; 0          ; 74   ; 0            ; |top_module                                                                                                ; top_module                   ; work         ;
 ;    |Hexadecimal_To_Seven_Segment:Segment0|              ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|Hexadecimal_To_Seven_Segment:Segment0                                                          ; Hexadecimal_To_Seven_Segment ; work         ;
 ;    |Hexadecimal_To_Seven_Segment:Segment1|              ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|Hexadecimal_To_Seven_Segment:Segment1                                                          ; Hexadecimal_To_Seven_Segment ; work         ;
 ;    |Hexadecimal_To_Seven_Segment:Segment2|              ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|Hexadecimal_To_Seven_Segment:Segment2                                                          ; Hexadecimal_To_Seven_Segment ; work         ;
-;    |PS2_Controller:PS2|                                 ; 106 (6)             ; 90 (5)                    ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Controller:PS2                                                                             ; PS2_Controller               ; work         ;
+;    |Hexadecimal_To_Seven_Segment:Segment3|              ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|Hexadecimal_To_Seven_Segment:Segment3                                                          ; Hexadecimal_To_Seven_Segment ; work         ;
+;    |PS2_Controller:PS2|                                 ; 108 (6)             ; 90 (5)                    ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Controller:PS2                                                                             ; PS2_Controller               ; work         ;
 ;       |Altera_UP_PS2_Command_Out:PS2_Command_Out|       ; 86 (86)             ; 60 (60)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out                                   ; Altera_UP_PS2_Command_Out    ; work         ;
-;       |Altera_UP_PS2_Data_In:PS2_Data_In|               ; 14 (14)             ; 25 (25)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In                                           ; Altera_UP_PS2_Data_In        ; work         ;
-;    |PS2_Demo:KeyboardInput|                             ; 301 (301)           ; 19 (19)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Demo:KeyboardInput                                                                         ; PS2_Demo                     ; work         ;
+;       |Altera_UP_PS2_Data_In:PS2_Data_In|               ; 16 (16)             ; 25 (25)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In                                           ; Altera_UP_PS2_Data_In        ; work         ;
+;    |PS2_Demo:KeyboardInput|                             ; 93 (93)             ; 81 (81)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Demo:KeyboardInput                                                                         ; PS2_Demo                     ; work         ;
 ;    |vga_adapter:VGA|                                    ; 57 (0)              ; 30 (0)                    ; 230400            ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA                                                                                ; vga_adapter                  ; work         ;
 ;       |altsyncram:VideoMemory|                          ; 15 (0)              ; 4 (0)                     ; 230400            ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory                                                         ; altsyncram                   ; work         ;
 ;          |altsyncram_m7n1:auto_generated|               ; 15 (0)              ; 4 (4)                     ; 230400            ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m7n1:auto_generated                          ; altsyncram_m7n1              ; work         ;
@@ -367,101 +367,28 @@ Encoding Type:  One-Hot
 +----------------------------+------------------------+-------------------------+-------------------------+-------------------------+--------------------+-------------------------+-------------------------+--------------------+-------------------------+-------------------------+--------------------+----------------------------+-----------------------+------------------------+----------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------+
-; User-Specified and Inferred Latches                                                                            ;
-+-----------------------------------------------------+---------------------------------+------------------------+
-; Latch Name                                          ; Latch Enable Signal             ; Free of Timing Hazards ;
-+-----------------------------------------------------+---------------------------------+------------------------+
-; PS2_Demo:KeyboardInput|data[8]                      ; PS2_Demo:KeyboardInput|WideOr18 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[9]                      ; PS2_Demo:KeyboardInput|WideOr18 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[10]                     ; PS2_Demo:KeyboardInput|WideOr18 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[11]                     ; PS2_Demo:KeyboardInput|WideOr18 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[7]                      ; PS2_Demo:KeyboardInput|WideOr19 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[6]                      ; PS2_Demo:KeyboardInput|WideOr19 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[5]                      ; PS2_Demo:KeyboardInput|WideOr19 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[4]                      ; PS2_Demo:KeyboardInput|WideOr19 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[3]                      ; PS2_Demo:KeyboardInput|WideOr20 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[2]                      ; PS2_Demo:KeyboardInput|WideOr20 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[1]                      ; PS2_Demo:KeyboardInput|WideOr20 ; yes                    ;
-; PS2_Demo:KeyboardInput|data[0]                      ; PS2_Demo:KeyboardInput|WideOr20 ; yes                    ;
-; PS2_Demo:KeyboardInput|VolumeGo                     ; PS2_Demo:KeyboardInput|WideOr12 ; yes                    ;
-; PS2_Demo:KeyboardInput|PitchGo                      ; PS2_Demo:KeyboardInput|WideOr13 ; yes                    ;
-; PS2_Demo:KeyboardInput|DistortionGo                 ; PS2_Demo:KeyboardInput|WideOr14 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[0]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[1]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[2]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[3]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[4]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[5]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[6]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[7]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[8]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[9]                     ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[10]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[11]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[12]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[13]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[14]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[15]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[16]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[17]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[18]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[19]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[20]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[21]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[22]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop1[23]                    ; PS2_Demo:KeyboardInput|WideOr15 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[0]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[1]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[2]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[3]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[4]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[5]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[6]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[7]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[8]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[9]                     ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[10]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[11]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[12]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[13]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[14]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[15]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[16]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[17]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[18]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[19]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[20]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[21]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[22]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop2[23]                    ; PS2_Demo:KeyboardInput|WideOr16 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[0]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[1]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[2]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[3]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[4]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[5]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[6]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[7]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[8]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[9]                     ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[10]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[11]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[12]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[13]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[14]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[15]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[16]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[17]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[18]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[19]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[20]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[21]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[22]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; PS2_Demo:KeyboardInput|loop3[23]                    ; PS2_Demo:KeyboardInput|WideOr17 ; yes                    ;
-; Number of user-specified and inferred latches = 87  ;                                 ;                        ;
-+-----------------------------------------------------+---------------------------------+------------------------+
-Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top_module|PS2_Demo:KeyboardInput|next_state                                                                                                                                                                                                                                                                                                 ;
++-------------------------+---------------------+----------------------+----------------------+----------------------+-----------------+----------------------+----------------------+-----------------+----------------------+----------------------+-----------------+-------------------------+--------------------+---------------------+-------------------+
+; Name                    ; next_state.S_OUTPUT ; next_state.S_SETDATA ; next_state.S_L3_WAIT ; next_state.S_L3_SAVE ; next_state.S_L3 ; next_state.S_L2_WAIT ; next_state.S_L2_SAVE ; next_state.S_L2 ; next_state.S_L1_WAIT ; next_state.S_L1_SAVE ; next_state.S_L1 ; next_state.S_DISTORTION ; next_state.S_PITCH ; next_state.S_VOLUME ; next_state.S_MAIN ;
++-------------------------+---------------------+----------------------+----------------------+----------------------+-----------------+----------------------+----------------------+-----------------+----------------------+----------------------+-----------------+-------------------------+--------------------+---------------------+-------------------+
+; next_state.S_MAIN       ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 0                 ;
+; next_state.S_VOLUME     ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 1                   ; 1                 ;
+; next_state.S_PITCH      ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 1                  ; 0                   ; 1                 ;
+; next_state.S_DISTORTION ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 1                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_L1         ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 1               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_L1_SAVE    ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 1                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_L1_WAIT    ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 1                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_L2         ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 1               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_L2_SAVE    ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 1                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_L2_WAIT    ; 0                   ; 0                    ; 0                    ; 0                    ; 0               ; 1                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_L3         ; 0                   ; 0                    ; 0                    ; 0                    ; 1               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_L3_SAVE    ; 0                   ; 0                    ; 0                    ; 1                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_L3_WAIT    ; 0                   ; 0                    ; 1                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_SETDATA    ; 0                   ; 1                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
+; next_state.S_OUTPUT     ; 1                   ; 0                    ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                    ; 0                    ; 0               ; 0                       ; 0                  ; 0                   ; 1                 ;
++-------------------------+---------------------+----------------------+----------------------+----------------------+-----------------+----------------------+----------------------+-----------------+----------------------+----------------------+-----------------+-------------------------+--------------------+---------------------+-------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -479,10 +406,14 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~4                              ; Lost fanout                                                                             ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~2                                         ; Lost fanout                                                                             ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver~3                                         ; Lost fanout                                                                             ;
-; PS2_Demo:KeyboardInput|current_state~2                                                                        ; Lost fanout                                                                             ;
-; PS2_Demo:KeyboardInput|current_state~3                                                                        ; Lost fanout                                                                             ;
-; PS2_Demo:KeyboardInput|current_state~4                                                                        ; Lost fanout                                                                             ;
-; PS2_Demo:KeyboardInput|current_state~5                                                                        ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|current_state~17                                                                       ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|current_state~18                                                                       ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|current_state~19                                                                       ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|current_state~20                                                                       ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|next_state~2                                                                           ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|next_state~3                                                                           ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|next_state~4                                                                           ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|next_state~5                                                                           ; Lost fanout                                                                             ;
 ; PS2_Controller:PS2|s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT                                                  ; Stuck at GND due to stuck port data_in                                                  ;
 ; PS2_Controller:PS2|s_ps2_transceiver.PS2_STATE_4_END_DELAYED                                                  ; Stuck at GND due to stuck port data_in                                                  ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_was_sent                                 ; Lost fanout                                                                             ;
@@ -492,7 +423,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_0_IDLE               ; Stuck at GND due to stuck port data_in                                                  ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT   ; Lost fanout                                                                             ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ; Lost fanout                                                                             ;
-; Total Number of Removed Registers = 36                                                                        ;                                                                                         ;
+; Total Number of Removed Registers = 40                                                                        ;                                                                                         ;
 +---------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
 
 
@@ -517,12 +448,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 139   ;
-; Number of registers using Synchronous Clear  ; 96    ;
+; Total registers                              ; 201   ;
+; Number of registers using Synchronous Clear  ; 120   ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 20    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 84    ;
+; Number of registers using Clock Enable       ; 120   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -532,16 +463,20 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[1]                             ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[0]                            ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top_module|vga_adapter:VGA|vga_controller:controller|yCounter[6]                                             ;
-; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[1]          ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[7]                   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[7]                             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_module|PS2_Demo:KeyboardInput|data[11]                                                                   ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_module|PS2_Demo:KeyboardInput|data[5]                                                                    ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_module|PS2_Demo:KeyboardInput|data[3]                                                                    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[7]                            ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top_module|vga_adapter:VGA|vga_controller:controller|yCounter[3]                                             ;
+; 4:1                ; 24 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |top_module|PS2_Demo:KeyboardInput|counter[3]                                                                 ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[4]          ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[4]                   ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[3]                           ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[0]                                ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[2]                                ;
 ; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[5]                  ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m7n1:auto_generated|mux_2hb:mux3|result_node[9] ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |top_module|PS2_Demo:KeyboardInput|current_state                                                              ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m7n1:auto_generated|mux_2hb:mux3|result_node[1] ;
+; 5:1                ; 15 bits   ; 45 LEs        ; 45 LEs               ; 0 LEs                  ; No         ; |top_module|PS2_Demo:KeyboardInput|current_state                                                              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------+
 
 
@@ -1188,36 +1123,36 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 139                         ;
+; arriav_ff             ; 201                         ;
 ;     CLR SCLR          ; 10                          ;
-;     ENA               ; 8                           ;
+;     ENA               ; 20                          ;
 ;     ENA CLR SCLR      ; 10                          ;
-;     ENA SCLR          ; 66                          ;
+;     ENA SCLR          ; 90                          ;
 ;     SCLR              ; 10                          ;
-;     plain             ; 35                          ;
+;     plain             ; 61                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 490                         ;
-;     arith             ; 142                         ;
-;         1 data inputs ; 142                         ;
-;     normal            ; 338                         ;
+; arriav_lcell_comb     ; 292                         ;
+;     arith             ; 94                          ;
+;         1 data inputs ; 94                          ;
+;     normal            ; 188                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 4                           ;
-;         2 data inputs ; 97                          ;
-;         3 data inputs ; 12                          ;
-;         4 data inputs ; 131                         ;
-;         5 data inputs ; 54                          ;
-;         6 data inputs ; 38                          ;
+;         1 data inputs ; 5                           ;
+;         2 data inputs ; 21                          ;
+;         3 data inputs ; 21                          ;
+;         4 data inputs ; 64                          ;
+;         5 data inputs ; 45                          ;
+;         6 data inputs ; 30                          ;
 ;     shared            ; 10                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 2                           ;
 ;         2 data inputs ; 6                           ;
 ;         3 data inputs ; 1                           ;
-; boundary_port         ; 67                          ;
+; boundary_port         ; 74                          ;
 ; generic_pll           ; 1                           ;
 ; stratixv_ram_block    ; 36                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 5.30                        ;
-; Average LUT depth     ; 2.89                        ;
+; Max LUT depth         ; 3.30                        ;
+; Average LUT depth     ; 1.94                        ;
 +-----------------------+-----------------------------+
 
 
@@ -1226,7 +1161,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:01     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -1236,7 +1171,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-    Info: Processing started: Fri Dec 01 18:23:09 2023
+    Info: Processing started: Sat Dec 02 02:09:57 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off top_module -c top_module
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -1263,7 +1198,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file top_mod
 Info (12021): Found 1 design units, including 1 entities, in source file vga_plot.v
     Info (12023): Found entity 1: vga_plot File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 1
 Info (12127): Elaborating entity "top_module" for the top level hierarchy
-Info (12128): Elaborating entity "vga_adapter" for hierarchy "vga_adapter:VGA" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 85
+Info (12128): Elaborating entity "vga_adapter" for hierarchy "vga_adapter:VGA" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 88
 Info (12128): Elaborating entity "vga_address_translator" for hierarchy "vga_adapter:VGA|vga_address_translator:user_input_translator" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_adapter.v Line: 192
 Info (12128): Elaborating entity "altsyncram" for hierarchy "vga_adapter:VGA|altsyncram:VideoMemory" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_adapter.v Line: 213
 Info (12130): Elaborated megafunction instantiation "vga_adapter:VGA|altsyncram:VideoMemory" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_adapter.v Line: 213
@@ -1314,7 +1249,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/altp
     Info (12023): Found entity 1: altpll_80u File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/db/altpll_80u.tdf Line: 25
 Info (12128): Elaborating entity "altpll_80u" for hierarchy "vga_adapter:VGA|vga_pll:mypll|altpll:altpll_component|altpll_80u:auto_generated" File: c:/intelfpga_lite/18.0/quartus/libraries/megafunctions/altpll.tdf Line: 897
 Info (12128): Elaborating entity "vga_controller" for hierarchy "vga_adapter:VGA|vga_controller:controller" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_adapter.v Line: 262
-Info (12128): Elaborating entity "vga_plot" for hierarchy "vga_plot:VGAOutput" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 114
+Info (12128): Elaborating entity "vga_plot" for hierarchy "vga_plot:VGAOutput" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 117
 Warning (10858): Verilog HDL warning at vga_plot.v(75): object current_state used but never assigned File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
 Warning (10036): Verilog HDL or VHDL warning at vga_plot.v(76): object "next_state" assigned a value but never read File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 76
 Warning (10230): Verilog HDL assignment warning at vga_plot.v(209): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 209
@@ -1452,311 +1387,17 @@ Info (10041): Inferred latch for "loopX[1]" at vga_plot.v(196) File: C:/Users/ch
 Info (10041): Inferred latch for "loopX[2]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
 Info (10041): Inferred latch for "loopX[3]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
 Info (10041): Inferred latch for "loopX[4]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (12128): Elaborating entity "PS2_Demo" for hierarchy "PS2_Demo:KeyboardInput" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 145
-Warning (10270): Verilog HDL Case Statement warning at PS2_Demo.v(261): incomplete case statement has no default case item File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10264): Verilog HDL Case Statement information at PS2_Demo.v(261): all case item expressions in this case statement are onehot File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "VolumeGo", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "PitchGo", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "DistortionGo", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "loop1", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "loop2", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "loop3", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "data", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "final_data", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "volume_data", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "pitch_data", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Warning (10240): Verilog HDL Always Construct warning at PS2_Demo.v(243): inferring latch(es) for variable "distortion_data", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 243
-Info (10041): Inferred latch for "distortion_data[0]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "distortion_data[1]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "distortion_data[2]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "distortion_data[3]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "distortion_data[4]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "distortion_data[5]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "distortion_data[6]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "pitch_data[0]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "pitch_data[1]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "pitch_data[2]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "pitch_data[3]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "pitch_data[4]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "pitch_data[5]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "pitch_data[6]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "volume_data[0]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "volume_data[1]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "volume_data[2]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "volume_data[3]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "volume_data[4]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "volume_data[5]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "volume_data[6]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[0]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[1]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[2]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[3]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[4]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[5]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[6]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[7]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[8]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[9]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[10]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "data[11]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[0]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[1]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[2]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[3]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[4]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[5]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[6]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[7]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[8]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[9]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[10]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[11]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[12]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[13]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[14]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[15]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[16]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[17]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[18]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[19]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[20]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[21]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[22]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop3[23]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[0]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[1]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[2]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[3]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[4]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[5]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[6]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[7]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[8]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[9]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[10]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[11]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[12]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[13]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[14]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[15]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[16]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[17]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[18]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[19]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[20]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[21]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[22]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop2[23]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[0]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[1]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[2]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[3]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[4]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[5]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[6]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[7]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[8]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[9]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[10]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[11]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[12]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[13]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[14]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[15]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[16]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[17]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[18]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[19]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[20]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[21]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[22]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "loop1[23]" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "DistortionGo" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "PitchGo" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (10041): Inferred latch for "VolumeGo" at PS2_Demo.v(261) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-Info (12128): Elaborating entity "PS2_Controller" for hierarchy "PS2_Controller:PS2" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 160
+Info (12128): Elaborating entity "PS2_Demo" for hierarchy "PS2_Demo:KeyboardInput" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 149
+Info (10264): Verilog HDL Case Statement information at PS2_Demo.v(294): all case item expressions in this case statement are onehot File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 294
+Info (12128): Elaborating entity "PS2_Controller" for hierarchy "PS2_Controller:PS2" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 164
 Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Controller.v Line: 246
 Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Controller.v Line: 266
-Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 169
+Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 173
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[8] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[9] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[10] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[11] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[7] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[6] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[5] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[4] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[3] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[2] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[1] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|data[0] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_SAVE File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|VolumeGo has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 74
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_VOLUME File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|PitchGo has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 75
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_PITCH File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|DistortionGo has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 76
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_DISTORTION File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[0] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[1] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[2] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[3] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[4] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[5] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[6] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[7] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[8] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[9] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[10] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[11] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[12] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[13] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[14] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[15] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[16] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[17] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[18] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[19] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[20] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[21] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[22] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop1[23] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L1_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[0] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[1] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[2] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[3] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[4] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[5] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[6] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[7] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[8] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[9] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[10] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[11] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[12] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[13] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[14] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[15] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[16] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[17] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[18] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[19] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[20] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[21] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[22] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop2[23] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L2_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[0] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[1] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[2] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[3] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[4] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[5] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[6] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[7] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[8] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[9] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[10] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[11] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[12] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[13] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[14] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[15] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[16] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[17] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[18] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[19] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[20] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[21] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[22] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
-Warning (13012): Latch PS2_Demo:KeyboardInput|loop3[23] has unsafe behavior File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 261
-    Warning (13013): Ports D and ENA on the latch are fed by the same signal PS2_Demo:KeyboardInput|current_state.S_L3_WAIT File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 92
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "VGA_SYNC_N" is stuck at VCC File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 37
+    Warning (13410): Pin "VGA_SYNC_N" is stuck at VCC File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 39
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 23 registers lost all their fanouts during netlist optimizations.
+Info (17049): 27 registers lost all their fanouts during netlist optimizations.
 Warning (20013): Ignored 385 assignments for entity "DE1_SoC" -- entity does not exist in design
     Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_CS_N -entity DE1_SoC was ignored
     Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_DIN -entity DE1_SoC was ignored
@@ -2149,25 +1790,25 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
 Warning: RST port on the PLL is not properly connected on instance vga_adapter:VGA|vga_pll:mypll|altpll:altpll_component|altpll_80u:auto_generated|generic_pll1. The reset port on the PLL should be connected. If the PLL loses lock for any reason, you might need to manually reset the PLL in order to re-establish lock to the reference clock. File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/db/altpll_80u.tdf Line: 33
     Info: Must be connected
 Warning (21074): Design contains 7 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 22
-    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 22
-    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 22
-    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 22
-    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 22
-    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 22
-    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 22
-Info (21057): Implemented 614 device resources after synthesis - the final resource count might be different
+    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
+    Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
+    Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
+    Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
+Info (21057): Implemented 437 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
-    Info (21059): Implemented 50 output pins
+    Info (21059): Implemented 57 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 510 logic cells
+    Info (21061): Implemented 326 logic cells
     Info (21064): Implemented 36 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 690 warnings
-    Info: Peak virtual memory: 4862 megabytes
-    Info: Processing ended: Fri Dec 01 18:23:29 2023
-    Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:15
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 504 warnings
+    Info: Peak virtual memory: 4845 megabytes
+    Info: Processing ended: Sat Dec 02 02:10:10 2023
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:10
 
 
 +------------------------------------------+

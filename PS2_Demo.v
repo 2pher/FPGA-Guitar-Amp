@@ -89,13 +89,19 @@ output reg  [3:0] state;
 
 // Internal Wires
 reg		[3:0] input_num;
+reg				Pre_VSwitch;
+reg				Pre_PSwitch;
+reg				Pre_DSwitch;
+reg				Load1;
+reg				Load2;
+reg				Load3;
+reg				Count;
+reg				CalculateData;
 
 // Internal Registers
 reg		[3:0] current_state;
 reg		[3:0] next_state;
-reg	  [23:0] loop1;
-reg	  [23:0] loop2;
-reg	  [23:0] loop3;
+reg	  [23:0] counter;
 reg		[6:0] final_data;
 
 // State Machine Registers
@@ -109,6 +115,42 @@ reg		[6:0] final_data;
  *                             Sequential Logic                              *
  *****************************************************************************/
 
+// Logic for NEWLY-flipped switches
+always @(posedge Clock)
+begin
+	Pre_VSwitch <= VolumeOn;
+	Pre_PSwitch <= PitchOn;
+	Pre_DSwitch <= DistortionOn;
+	
+	if (Pre_VSwitch == 1'b0 && VolumeOn == 1'b1) begin
+		VolumeTurnedOn 	<= 1'b1;
+	end else if (Pre_VSwitch == 1'b1 && VolumeOn == 1'b0) begin
+		VolumeTurnedOff 	<= 1'b1;
+	end else begin
+		VolumeTurnedOn 	<= 1'b0;
+		VolumeTurnedOff	<= 1'b0;
+	end
+	
+	if (Pre_PSwitch == 1'b0 && PitchOn == 1'b1) begin
+		PitchTurnedOn 		<= 1'b1;
+	end else if (Pre_PSwitch == 1'b1 && PitchOn == 1'b0) begin
+		PitchTurnedOff 	<= 1'b1;
+	end else begin
+		PitchTurnedOn 		<= 1'b0;
+		PitchTurnedOff		<= 1'b0;
+	end
+	
+	if (Pre_DSwitch == 1'b0 && DistortionOn == 1'b1) begin
+		DistortionTurnedOn 	<= 1'b1;
+	end else if (Pre_DSwitch == 1'b1 && DistortionOn == 1'b0) begin
+		DistortionTurnedOff 	<= 1'b1;
+	end else begin
+		DistortionTurnedOn 	<= 1'b0;
+		DistortionTurnedOff	<= 1'b0;
+	end
+end
+
+ 
 // Always block to convert ps2_key_data into numbers
 always @(posedge Clock)
 begin
@@ -129,7 +171,7 @@ end
 		
 
 // FSM to accept 3 user-inputted numbers
-always @(*) 
+always @(posedge Clock) 
 begin
 	case (current_state)
 		S_MAIN: begin
@@ -162,7 +204,7 @@ begin
 		
 		S_L1_WAIT: begin
 			state = 4'd6; 
-			if (loop1 == 24'd1) begin
+			if (counter == 24'd12500000) begin
 				next_state = S_L2;
 			end else begin
 				next_state = S_L1_WAIT;
@@ -182,7 +224,7 @@ begin
 		
 		S_L2_WAIT: begin
 			state = 4'd9; 
-			if (loop2 == 24'd1) begin
+			if (counter == 24'd12500000) begin
 				next_state = S_L3;
 			end else begin
 				next_state = S_L2_WAIT;
@@ -202,7 +244,7 @@ begin
 		
 		S_L3_WAIT: begin
 			state = 4'd12; 
-			if (loop3 == 24'd1) begin
+			if (counter == 24'd12500000) begin
 				next_state = S_SETDATA;
 			end else begin
 				next_state = S_L3_WAIT;
@@ -219,27 +261,20 @@ begin
 		end
 		
 		S_OUTPUT: begin state = 4'd14; next_state = S_MAIN; end
-		
+			
 		default: next_state <= S_MAIN;
 	endcase
 end
 
-
 always @(posedge Clock)
 begin
-	VolumeTurnedOff 		<= 1'b0;
-	PitchTurnedOff 		<= 1'b0;
-	DistortionTurnedOff 	<= 1'b0;
 	if (Reset) begin
 		current_state <= S_MAIN;
 	end else if(VolumeGo && !VolumeOn) begin
-		VolumeTurnedOff <= 1'b1;
 		current_state <= S_MAIN;
 	end else if (PitchGo && !PitchOn) begin
-		VolumeTurnedOff <= 1'b1;
 		current_state <= S_MAIN;
 	end else if (DistortionGo && !DistortionOn) begin
-		VolumeTurnedOff <= 1'b1;
 		current_state <= S_MAIN; 
 	end else begin		
 		current_state <= next_state;
@@ -248,63 +283,68 @@ end
 
 
 // Control Signals
-always @(*)
+always @(posedge Clock)
 begin
-	VolumeTurnedOn 		= 1'b0;
-	PitchTurnedOn 			= 1'b0;
-	DistortionTurnedOn 	= 1'b0;
-	EffectGo					= 1'b0;
-	if (Reset) begin
-		VolumeGo <= 1'b0;
-		PitchGo <= 1'b0;
-		DistortionGo <= 1'b0;
-		//input_num <= 4'b0;
-		loop1 <= 24'b0;
-		loop2 <= 24'b0;
-		loop3 <= 24'b0;
-		data <= 12'b0;
-		final_data <= 7'b0;
-		volume_data <= 7'b0;
-		pitch_data <= 7'b0;
-		distortion_data <= 7'b0;
-	end else begin
-		case (current_state)
-			S_MAIN: begin VolumeGo 		= 1'b0; 
-							  PitchGo 		= 1'b0; 
-							  DistortionGo = 1'b0; 
-							  EffectGo 		= 1'b0;
-							  //input_num		= 4'b0;
-							  loop1 			= 24'b0;
-							  loop2 			= 24'b0;
-							  loop3 		 	= 24'b0;
-							  data			= 12'b0;
-							  final_data 	= 7'b0;
-					  end
-			S_VOLUME: begin VolumeGo = 1'b1; VolumeTurnedOn = 1'b1; end
-			S_PITCH: begin PitchGo = 1'b1; PitchTurnedOn = 1'b1; end
-			S_DISTORTION: begin DistortionGo = 1'b1; DistortionTurnedOn = 1'b1; end
-			S_L1_SAVE: data [11:8] = input_num;
-			S_L1_WAIT: loop1 = loop1 + 1'b1;
-			S_L2_SAVE: data  [7:4] = input_num;
-			S_L2_WAIT: loop2 = loop2 + 1'b1;
-			S_L3_SAVE: data  [3:0] = input_num;
-			S_L3_WAIT: loop3 = loop3 + 1'b1;
-			S_SETDATA: begin
-								if (((data [11:8] * 7'd100) + (data [7:4] * 4'd10) + data [3:0]) > 7'd100) begin
-									final_data = 7'd100;
-								end else begin
-									final_data = ((data [11:8] * 7'd100) + (data [7:4] * 4'd10) + data [3:0]);
-								end
-								
-								if (VolumeGo) begin 					volume_data = final_data;							
-								end else if (PitchGo) begin 		pitch_data = final_data;
-								end else if (DistortionGo) begin distortion_data = final_data;
-								end
-						  end
-			S_OUTPUT: EffectGo = 1'b1;
-		endcase
-	end
+	EffectGo			= 1'b0;
+	Load1				= 1'b0;
+	Load2				= 1'b0;
+	Load3				= 1'b0;
+	Count				= 1'b0;
+	CalculateData 	= 1'b0;
+	case (current_state)
+		S_MAIN: begin
+			VolumeGo 		= 1'b0;
+			PitchGo 			= 1'b0;
+			DistortionGo 	= 1'b0;
+		end
+		S_VOLUME: begin VolumeGo = 1'b1; end
+		S_PITCH: begin PitchGo = 1'b1; end
+		S_DISTORTION: begin DistortionGo = 1'b1; end
+		S_L1_SAVE: begin Load1 = 1'b1; end
+		S_L1_WAIT: begin Count = 1'b1; end
+		S_L2_SAVE: begin Load2 = 1'b1; end		
+		S_L2_WAIT: begin Count = 1'b1; end
+		S_L3_SAVE: begin Load3 = 1'b1; end
+		S_L3_WAIT: begin Count = 1'b1; end
+		S_SETDATA: begin CalculateData = 1'b1; end
+		S_OUTPUT: begin EffectGo = 1'b1; end
+	endcase
 end
 
+// Datapath
+always @(posedge Clock)
+begin
+	if (Reset) begin
+		data					<= 12'd0;
+		final_data			<= 7'd0;
+		volume_data 		<= 7'd0;
+		pitch_data 			<= 7'd0;
+		distortion_data	<= 7'd0;
+		counter 				<= 24'd0;
+	end else begin
+		if (Load1) begin
+			data [11:8] <= input_num;
+		end else if (Load2) begin
+			data [ 7:4] <= input_num;
+		end else if (Load3) begin
+			data [ 3:0] <= input_num;
+		end else if (Count) begin
+			if (counter == 24'd12500000) begin
+				counter <= 24'd0;
+			end else begin
+				counter <= counter + 1'b1;
+			end
+		end else if (CalculateData) begin
+			if (((data [11:8] * 7'd100) + (data [7:4] * 4'd10) + data[3:0]) > 7'd100) begin
+				final_data [6:0] <= 7'd100;
+			end else begin
+				final_data [6:0] <= ((data [11:8] * 7'd100) + (data [7:4] * 4'd10) + data[3:0]);
+			end
+			if (VolumeGo) begin volume_data <= final_data; end
+			else if (PitchGo) begin pitch_data <= final_data; end
+			else if (DistortionGo) begin distortion_data <= final_data; end
+		end
+	end
+end
 
 endmodule

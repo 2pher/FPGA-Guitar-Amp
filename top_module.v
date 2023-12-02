@@ -2,7 +2,7 @@ module top_module (
 	CLOCK_50,
 	SW,
 	KEY,
-	HEX0
+	HEX0,
 	HEX5,
 	HEX4,
 	HEX3,
@@ -188,7 +188,7 @@ Hexadecimal_To_Seven_Segment Segment2 (
 	.seven_seg_display	(HEX3)
 );
 
-Hexadecimal_To_Seven_Segment Segment2 (
+Hexadecimal_To_Seven_Segment Segment3 (
 	// Inputs
 	.hex_number			(state),
 
