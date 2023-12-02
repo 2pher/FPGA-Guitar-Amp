@@ -95,6 +95,9 @@ vga_plot VGAOutput(
 	// Inputs
 	.Clock					(CLOCK_50),
 	.Reset					(~KEY[0]),
+	.VolumeOn				(SW[9]),
+	.PitchOn					(SW[8]),
+	.DistortionOn			(SW[7]),
 	.VolumeTurnedOn		(VolumeTurnedOn),
 	.PitchTurnedOn			(PitchTurnedOn),
 	.DistortionTurnedOn	(DistortionTurnedOn),

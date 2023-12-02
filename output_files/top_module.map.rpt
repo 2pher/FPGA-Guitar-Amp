@@ -1,5 +1,5 @@
 Analysis & Synthesis report for top_module
-Sat Dec 02 02:10:10 2023
+Sat Dec 02 03:59:22 2023
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -67,13 +67,13 @@ refer to the applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Sat Dec 02 02:10:09 2023       ;
+; Analysis & Synthesis Status     ; Successful - Sat Dec 02 03:59:22 2023       ;
 ; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                   ; top_module                                  ;
 ; Top-level Entity Name           ; top_module                                  ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 201                                         ;
+; Total registers                 ; 223                                         ;
 ; Total pins                      ; 74                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 230,400                                     ;
@@ -187,7 +187,8 @@ refer to the applicable agreement for further details.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -234,16 +235,16 @@ refer to the applicable agreement for further details.
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimate of Logic utilization (ALMs needed) ; 161            ;
+; Estimate of Logic utilization (ALMs needed) ; 177            ;
 ;                                             ;                ;
-; Combinational ALUT usage for logic          ; 287            ;
+; Combinational ALUT usage for logic          ; 317            ;
 ;     -- 7 input functions                    ; 0              ;
-;     -- 6 input functions                    ; 30             ;
-;     -- 5 input functions                    ; 45             ;
-;     -- 4 input functions                    ; 64             ;
-;     -- <=3 input functions                  ; 148            ;
+;     -- 6 input functions                    ; 33             ;
+;     -- 5 input functions                    ; 49             ;
+;     -- 4 input functions                    ; 74             ;
+;     -- <=3 input functions                  ; 161            ;
 ;                                             ;                ;
-; Dedicated logic registers                   ; 201            ;
+; Dedicated logic registers                   ; 223            ;
 ;                                             ;                ;
 ; I/O pins                                    ; 74             ;
 ; Total MLAB memory bits                      ; 0              ;
@@ -255,9 +256,9 @@ refer to the applicable agreement for further details.
 ;     -- PLLs                                 ; 1              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; CLOCK_50~input ;
-; Maximum fan-out                             ; 208            ;
-; Total fan-out                               ; 2373           ;
-; Average fan-out                             ; 3.52           ;
+; Maximum fan-out                             ; 230            ;
+; Total fan-out                               ; 2974           ;
+; Average fan-out                             ; 4.09           ;
 +---------------------------------------------+----------------+
 
 
@@ -266,7 +267,7 @@ refer to the applicable agreement for further details.
 +---------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------+------------------------------+--------------+
 ; Compilation Hierarchy Node                              ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                        ; Entity Name                  ; Library Name ;
 +---------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------+------------------------------+--------------+
-; |top_module                                             ; 287 (1)             ; 201 (0)                   ; 230400            ; 0          ; 74   ; 0            ; |top_module                                                                                                ; top_module                   ; work         ;
+; |top_module                                             ; 317 (1)             ; 223 (0)                   ; 230400            ; 0          ; 74   ; 0            ; |top_module                                                                                                ; top_module                   ; work         ;
 ;    |Hexadecimal_To_Seven_Segment:Segment0|              ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|Hexadecimal_To_Seven_Segment:Segment0                                                          ; Hexadecimal_To_Seven_Segment ; work         ;
 ;    |Hexadecimal_To_Seven_Segment:Segment1|              ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|Hexadecimal_To_Seven_Segment:Segment1                                                          ; Hexadecimal_To_Seven_Segment ; work         ;
 ;    |Hexadecimal_To_Seven_Segment:Segment2|              ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|Hexadecimal_To_Seven_Segment:Segment2                                                          ; Hexadecimal_To_Seven_Segment ; work         ;
@@ -275,16 +276,18 @@ refer to the applicable agreement for further details.
 ;       |Altera_UP_PS2_Command_Out:PS2_Command_Out|       ; 86 (86)             ; 60 (60)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out                                   ; Altera_UP_PS2_Command_Out    ; work         ;
 ;       |Altera_UP_PS2_Data_In:PS2_Data_In|               ; 16 (16)             ; 25 (25)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In                                           ; Altera_UP_PS2_Data_In        ; work         ;
 ;    |PS2_Demo:KeyboardInput|                             ; 93 (93)             ; 81 (81)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|PS2_Demo:KeyboardInput                                                                         ; PS2_Demo                     ; work         ;
-;    |vga_adapter:VGA|                                    ; 57 (0)              ; 30 (0)                    ; 230400            ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA                                                                                ; vga_adapter                  ; work         ;
+;    |vga_adapter:VGA|                                    ; 65 (0)              ; 30 (0)                    ; 230400            ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA                                                                                ; vga_adapter                  ; work         ;
 ;       |altsyncram:VideoMemory|                          ; 15 (0)              ; 4 (0)                     ; 230400            ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory                                                         ; altsyncram                   ; work         ;
 ;          |altsyncram_m7n1:auto_generated|               ; 15 (0)              ; 4 (4)                     ; 230400            ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m7n1:auto_generated                          ; altsyncram_m7n1              ; work         ;
 ;             |decode_01a:rden_decode_b|                  ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m7n1:auto_generated|decode_01a:rden_decode_b ; decode_01a                   ; work         ;
 ;             |mux_2hb:mux3|                              ; 12 (12)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m7n1:auto_generated|mux_2hb:mux3             ; mux_2hb                      ; work         ;
+;       |vga_address_translator:user_input_translator|    ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|vga_address_translator:user_input_translator                                   ; vga_address_translator       ; work         ;
 ;       |vga_controller:controller|                       ; 42 (32)             ; 26 (26)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|vga_controller:controller                                                      ; vga_controller               ; work         ;
 ;          |vga_address_translator:controller_translator| ; 10 (10)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|vga_controller:controller|vga_address_translator:controller_translator         ; vga_address_translator       ; work         ;
 ;       |vga_pll:mypll|                                   ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|vga_pll:mypll                                                                  ; vga_pll                      ; work         ;
 ;          |altpll:altpll_component|                      ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|vga_pll:mypll|altpll:altpll_component                                          ; altpll                       ; work         ;
 ;             |altpll_80u:auto_generated|                 ; 0 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |top_module|vga_adapter:VGA|vga_pll:mypll|altpll:altpll_component|altpll_80u:auto_generated                ; altpll_80u                   ; work         ;
+;    |vga_plot:VGAOutput|                                 ; 22 (22)             ; 22 (22)                   ; 0                 ; 0          ; 0    ; 0            ; |top_module|vga_plot:VGAOutput                                                                             ; vga_plot                     ; work         ;
 +---------------------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------------------------------------------------------------------------+------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -396,9 +399,34 @@ Encoding Type:  One-Hot
 +---------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
 ; Register name                                                                                                 ; Reason for Removal                                                                      ;
 +---------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
+; vga_plot:VGAOutput|DrawDistortionLine                                                                         ; Stuck at VCC due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|DrawPitchLine                                                                              ; Stuck at VCC due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|DrawVolumeLine                                                                             ; Stuck at VCC due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|DrawDistortionBox                                                                          ; Stuck at VCC due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|DrawPitchBox                                                                               ; Stuck at VCC due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|DrawVolumeBox                                                                              ; Stuck at VCC due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|Resetting                                                                                  ; Stuck at GND due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|y[6]                                                                                       ; Stuck at GND due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|x[6,7]                                                                                     ; Stuck at GND due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|colour[2,8]                                                                                ; Stuck at GND due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|writeEn                                                                                    ; Stuck at VCC due to stuck port data_in                                                  ;
 ; PS2_Controller:PS2|idle_counter[0..7]                                                                         ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|distortion_data[0..6]                                                                  ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|pitch_data[0..6]                                                                       ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|volume_data[0..6]                                                                      ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|final_data[0..6]                                                                       ; Lost fanout                                                                             ;
+; PS2_Demo:KeyboardInput|CalculateData                                                                          ; Lost fanout                                                                             ;
+; vga_plot:VGAOutput|loopD[0..3]                                                                                ; Lost fanout                                                                             ;
+; vga_plot:VGAOutput|loopS[0..3]                                                                                ; Lost fanout                                                                             ;
+; vga_plot:VGAOutput|loop3[0..3]                                                                                ; Lost fanout                                                                             ;
+; vga_plot:VGAOutput|loop2[0..3]                                                                                ; Lost fanout                                                                             ;
+; vga_plot:VGAOutput|loop1[0..3]                                                                                ; Lost fanout                                                                             ;
+; vga_plot:VGAOutput|colour[1,3,4,9..11]                                                                        ; Merged with vga_plot:VGAOutput|Idle                                                     ;
+; vga_plot:VGAOutput|y[5]                                                                                       ; Merged with vga_plot:VGAOutput|y[4]                                                     ;
+; vga_plot:VGAOutput|colour[6,7]                                                                                ; Merged with vga_plot:VGAOutput|colour[0]                                                ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[1..7]                                ; Merged with PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[0] ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|ps2_command[0]                                   ; Stuck at GND due to stuck port data_in                                                  ;
+; vga_plot:VGAOutput|Idle                                                                                       ; Stuck at GND due to stuck port data_in                                                  ;
 ; PS2_Controller:PS2|s_ps2_transceiver~2                                                                        ; Lost fanout                                                                             ;
 ; PS2_Controller:PS2|s_ps2_transceiver~3                                                                        ; Lost fanout                                                                             ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter~2                              ; Lost fanout                                                                             ;
@@ -423,7 +451,7 @@ Encoding Type:  One-Hot
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_0_IDLE               ; Stuck at GND due to stuck port data_in                                                  ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT   ; Lost fanout                                                                             ;
 ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ; Lost fanout                                                                             ;
-; Total Number of Removed Registers = 40                                                                        ;                                                                                         ;
+; Total Number of Removed Registers = 112                                                                       ;                                                                                         ;
 +---------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------+
 
 
@@ -432,14 +460,31 @@ Encoding Type:  One-Hot
 +--------------------------------------------------------------+---------------------------+---------------------------------------------------------------------------------------------------------------+
 ; Register name                                                ; Reason for Removal        ; Registers Removed due to This Register                                                                        ;
 +--------------------------------------------------------------+---------------------------+---------------------------------------------------------------------------------------------------------------+
+; vga_plot:VGAOutput|DrawDistortionLine                        ; Stuck at VCC              ; vga_plot:VGAOutput|y[6], vga_plot:VGAOutput|x[6], vga_plot:VGAOutput|x[7],                                    ;
+;                                                              ; due to stuck port data_in ; vga_plot:VGAOutput|loopD[2], vga_plot:VGAOutput|loopD[1],                                                     ;
+;                                                              ;                           ; vga_plot:VGAOutput|loopD[0], vga_plot:VGAOutput|loopS[0],                                                     ;
+;                                                              ;                           ; vga_plot:VGAOutput|loopS[1], vga_plot:VGAOutput|loopS[2],                                                     ;
+;                                                              ;                           ; vga_plot:VGAOutput|loopS[3], vga_plot:VGAOutput|loop1[2]                                                      ;
 ; PS2_Controller:PS2|idle_counter[3]                           ; Lost Fanouts              ; PS2_Controller:PS2|idle_counter[4], PS2_Controller:PS2|idle_counter[5],                                       ;
 ;                                                              ;                           ; PS2_Controller:PS2|idle_counter[6], PS2_Controller:PS2|idle_counter[7]                                        ;
 ; PS2_Controller:PS2|s_ps2_transceiver~2                       ; Lost Fanouts              ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_was_sent,                                ;
 ;                                                              ;                           ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|error_communication_timed_out,                   ;
 ;                                                              ;                           ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_6_COMMAND_WAS_SENT,  ;
 ;                                                              ;                           ; PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|s_ps2_transmitter.PS2_STATE_7_TRANSMISSION_ERROR ;
+; vga_plot:VGAOutput|DrawPitchLine                             ; Stuck at VCC              ; vga_plot:VGAOutput|loopD[3], vga_plot:VGAOutput|loop2[2],                                                     ;
+;                                                              ; due to stuck port data_in ; vga_plot:VGAOutput|loop1[1]                                                                                   ;
+; vga_plot:VGAOutput|DrawVolumeLine                            ; Stuck at VCC              ; vga_plot:VGAOutput|loop2[1], vga_plot:VGAOutput|loop1[0]                                                      ;
+;                                                              ; due to stuck port data_in ;                                                                                                               ;
+; vga_plot:VGAOutput|DrawDistortionBox                         ; Stuck at VCC              ; vga_plot:VGAOutput|loop3[2], vga_plot:VGAOutput|loop2[0]                                                      ;
+;                                                              ; due to stuck port data_in ;                                                                                                               ;
+; vga_plot:VGAOutput|DrawPitchBox                              ; Stuck at VCC              ; vga_plot:VGAOutput|loop3[3], vga_plot:VGAOutput|loop1[3]                                                      ;
+;                                                              ; due to stuck port data_in ;                                                                                                               ;
+; vga_plot:VGAOutput|DrawVolumeBox                             ; Stuck at VCC              ; vga_plot:VGAOutput|loop3[1], vga_plot:VGAOutput|loop2[3]                                                      ;
+;                                                              ; due to stuck port data_in ;                                                                                                               ;
 ; PS2_Controller:PS2|s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT ; Stuck at GND              ; PS2_Controller:PS2|s_ps2_transceiver.PS2_STATE_3_END_TRANSFER,                                                ;
 ;                                                              ; due to stuck port data_in ; PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|s_ps2_receiver.PS2_STATE_1_WAIT_FOR_DATA                 ;
+; vga_plot:VGAOutput|Resetting                                 ; Stuck at GND              ; vga_plot:VGAOutput|loop3[0]                                                                                   ;
+;                                                              ; due to stuck port data_in ;                                                                                                               ;
 +--------------------------------------------------------------+---------------------------+---------------------------------------------------------------------------------------------------------------+
 
 
@@ -448,7 +493,7 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 201   ;
+; Total registers                              ; 223   ;
 ; Number of registers using Synchronous Clear  ; 120   ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 20    ;
@@ -463,19 +508,19 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                    ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------+
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[7]                             ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_module|PS2_Demo:KeyboardInput|data[11]                                                                   ;
-; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_module|PS2_Demo:KeyboardInput|data[5]                                                                    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|received_data[1]                             ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_module|PS2_Demo:KeyboardInput|data[8]                                                                    ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_module|PS2_Demo:KeyboardInput|data[7]                                                                    ;
 ; 3:1                ; 4 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |top_module|PS2_Demo:KeyboardInput|data[3]                                                                    ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[7]                            ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top_module|vga_adapter:VGA|vga_controller:controller|yCounter[3]                                             ;
-; 4:1                ; 24 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |top_module|PS2_Demo:KeyboardInput|counter[3]                                                                 ;
-; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[4]          ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[4]                   ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[3]                           ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[2]                                ;
-; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[5]                  ;
-; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m7n1:auto_generated|mux_2hb:mux3|result_node[1] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_shift_reg[0]                            ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |top_module|vga_adapter:VGA|vga_controller:controller|yCounter[4]                                             ;
+; 4:1                ; 24 bits   ; 48 LEs        ; 0 LEs                ; 48 LEs                 ; Yes        ; |top_module|PS2_Demo:KeyboardInput|counter[16]                                                                ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 0 LEs                ; 26 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|command_initiate_counter[1]          ;
+; 4:1                ; 20 bits   ; 40 LEs        ; 0 LEs                ; 40 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|waiting_counter[13]                  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|cur_bit[0]                           ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In|data_count[1]                                ;
+; 4:1                ; 17 bits   ; 34 LEs        ; 0 LEs                ; 34 LEs                 ; Yes        ; |top_module|PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out|transfer_counter[14]                 ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |top_module|vga_adapter:VGA|altsyncram:VideoMemory|altsyncram_m7n1:auto_generated|mux_2hb:mux3|result_node[5] ;
 ; 5:1                ; 15 bits   ; 45 LEs        ; 45 LEs               ; 0 LEs                  ; No         ; |top_module|PS2_Demo:KeyboardInput|current_state                                                              ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------------------------------------------+
 
@@ -984,16 +1029,12 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------+-------+-------------------------------------+
 ; S_IDLE            ; 0000  ; Unsigned Binary                     ;
 ; S_RESET           ; 0001  ; Unsigned Binary                     ;
-; S_VOLUME_ON       ; 0010  ; Unsigned Binary                     ;
-; S_VOLUME_OFF      ; 0011  ; Unsigned Binary                     ;
-; S_DISTORTION_ON   ; 0100  ; Unsigned Binary                     ;
-; S_DISTORTION_OFF  ; 0101  ; Unsigned Binary                     ;
-; S_PITCH_ON        ; 0110  ; Unsigned Binary                     ;
-; S_PITCH_OFF       ; 0111  ; Unsigned Binary                     ;
-; S_EFFECT          ; 1000  ; Unsigned Binary                     ;
-; S_DRAW_VOLUME     ; 1001  ; Unsigned Binary                     ;
-; S_DRAW_PITCH      ; 1010  ; Unsigned Binary                     ;
-; S_DRAW_DISTORTION ; 1011  ; Unsigned Binary                     ;
+; S_VOLUME_BOX      ; 0010  ; Unsigned Binary                     ;
+; S_PITCH_BOX       ; 0011  ; Unsigned Binary                     ;
+; S_DISTORTION_BOX  ; 0100  ; Unsigned Binary                     ;
+; S_DRAW_VOLUME     ; 0101  ; Unsigned Binary                     ;
+; S_DRAW_PITCH      ; 0110  ; Unsigned Binary                     ;
+; S_DRAW_DISTORTION ; 0111  ; Unsigned Binary                     ;
 +-------------------+-------+-------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -1123,25 +1164,25 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 201                         ;
+; arriav_ff             ; 223                         ;
 ;     CLR SCLR          ; 10                          ;
 ;     ENA               ; 20                          ;
 ;     ENA CLR SCLR      ; 10                          ;
 ;     ENA SCLR          ; 90                          ;
 ;     SCLR              ; 10                          ;
-;     plain             ; 61                          ;
+;     plain             ; 83                          ;
 ; arriav_io_obuf        ; 2                           ;
-; arriav_lcell_comb     ; 292                         ;
+; arriav_lcell_comb     ; 322                         ;
 ;     arith             ; 94                          ;
 ;         1 data inputs ; 94                          ;
-;     normal            ; 188                         ;
+;     normal            ; 218                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 5                           ;
-;         2 data inputs ; 21                          ;
-;         3 data inputs ; 21                          ;
-;         4 data inputs ; 64                          ;
-;         5 data inputs ; 45                          ;
-;         6 data inputs ; 30                          ;
+;         1 data inputs ; 8                           ;
+;         2 data inputs ; 25                          ;
+;         3 data inputs ; 27                          ;
+;         4 data inputs ; 74                          ;
+;         5 data inputs ; 49                          ;
+;         6 data inputs ; 33                          ;
 ;     shared            ; 10                          ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 2                           ;
@@ -1152,7 +1193,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; stratixv_ram_block    ; 36                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 3.30                        ;
-; Average LUT depth     ; 1.94                        ;
+; Average LUT depth     ; 1.89                        ;
 +-----------------------+-----------------------------+
 
 
@@ -1171,7 +1212,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-    Info: Processing started: Sat Dec 02 02:09:57 2023
+    Info: Processing started: Sat Dec 02 03:59:07 2023
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off top_module -c top_module
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -1249,155 +1290,97 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/altp
     Info (12023): Found entity 1: altpll_80u File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/db/altpll_80u.tdf Line: 25
 Info (12128): Elaborating entity "altpll_80u" for hierarchy "vga_adapter:VGA|vga_pll:mypll|altpll:altpll_component|altpll_80u:auto_generated" File: c:/intelfpga_lite/18.0/quartus/libraries/megafunctions/altpll.tdf Line: 897
 Info (12128): Elaborating entity "vga_controller" for hierarchy "vga_adapter:VGA|vga_controller:controller" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_adapter.v Line: 262
-Info (12128): Elaborating entity "vga_plot" for hierarchy "vga_plot:VGAOutput" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 117
-Warning (10858): Verilog HDL warning at vga_plot.v(75): object current_state used but never assigned File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10036): Verilog HDL or VHDL warning at vga_plot.v(76): object "next_state" assigned a value but never read File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 76
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(209): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 209
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(210): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 210
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(213): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 213
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(215): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 215
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(222): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 222
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(223): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 223
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(226): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 226
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(228): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 228
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(235): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 235
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(236): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 236
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(239): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 239
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(241): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 241
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(248): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 248
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(249): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 249
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(252): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 252
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(254): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 254
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(261): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 261
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(262): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 262
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(265): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 265
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(267): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 267
+Info (12128): Elaborating entity "vga_plot" for hierarchy "vga_plot:VGAOutput" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 120
+Warning (10858): Verilog HDL warning at vga_plot.v(77): object current_state used but never assigned File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 77
+Warning (10036): Verilog HDL or VHDL warning at vga_plot.v(78): object "next_state" assigned a value but never read File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 78
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(218): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 218
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(222): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 222
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(226): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 226
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(242): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 242
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(243): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 243
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(253): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 253
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(254): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 254
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(264): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 264
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(265): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 265
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(271): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 271
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(272): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 272
 Warning (10230): Verilog HDL assignment warning at vga_plot.v(274): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 274
 Warning (10230): Verilog HDL assignment warning at vga_plot.v(275): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 275
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(278): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 278
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(280): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 280
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(292): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 292
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(294): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 294
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(299): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 299
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(300): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 300
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(302): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 302
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(307): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 307
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(310): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 310
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(315): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 315
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(316): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 316
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(318): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 318
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(324): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 324
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(326): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 326
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(331): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 331
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(332): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 332
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(334): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 334
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(339): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 339
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(342): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 342
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(347): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 347
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(348): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 348
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(350): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 350
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(361): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 361
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(363): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 363
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(368): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 368
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(369): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 369
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(371): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 371
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(376): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 376
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(379): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 379
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(384): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 384
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(385): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 385
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(387): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 387
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(393): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 393
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(395): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 395
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(400): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 400
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(401): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 401
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(403): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 403
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(408): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 408
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(411): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 411
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(416): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 416
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(417): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 417
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(419): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 419
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(430): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 430
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(432): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 432
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(437): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 437
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(438): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 438
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(440): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 440
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(445): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 445
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(448): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 448
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(453): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 453
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(454): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 454
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(456): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 456
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(462): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 462
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(464): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 464
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(469): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 469
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(470): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 470
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(472): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 472
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(477): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 477
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(480): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 480
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(485): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 485
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(486): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 486
-Warning (10230): Verilog HDL assignment warning at vga_plot.v(488): truncated value with size 32 to match size of target (5) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 488
-Warning (10240): Verilog HDL Always Construct warning at vga_plot.v(196): inferring latch(es) for variable "loopX", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Warning (10240): Verilog HDL Always Construct warning at vga_plot.v(196): inferring latch(es) for variable "loopY", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Warning (10240): Verilog HDL Always Construct warning at vga_plot.v(196): inferring latch(es) for variable "BoxDoneDraw", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Warning (10240): Verilog HDL Always Construct warning at vga_plot.v(196): inferring latch(es) for variable "LineDoneDraw", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Warning (10240): Verilog HDL Always Construct warning at vga_plot.v(196): inferring latch(es) for variable "colour", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Warning (10240): Verilog HDL Always Construct warning at vga_plot.v(196): inferring latch(es) for variable "x", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Warning (10240): Verilog HDL Always Construct warning at vga_plot.v(196): inferring latch(es) for variable "y", which holds its previous value in one or more paths through the always construct File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Warning (10030): Net "current_state.S_IDLE" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_RESET" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_VOLUME_ON" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_VOLUME_OFF" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_DISTORTION_ON" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_DISTORTION_OFF" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_PITCH_ON" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_PITCH_OFF" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_EFFECT" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_DRAW_VOLUME" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_DRAW_PITCH" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Warning (10030): Net "current_state.S_DRAW_DISTORTION" at vga_plot.v(75) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 75
-Info (10041): Inferred latch for "y[0]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "y[1]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "y[2]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "y[3]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "y[4]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "y[5]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "y[6]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "x[0]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "x[1]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "x[2]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "x[3]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "x[4]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "x[5]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "x[6]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "x[7]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[0]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[1]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[2]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[3]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[4]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[5]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[6]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[7]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[8]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[9]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[10]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "colour[11]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "loopX[0]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "loopX[1]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "loopX[2]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "loopX[3]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (10041): Inferred latch for "loopX[4]" at vga_plot.v(196) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 196
-Info (12128): Elaborating entity "PS2_Demo" for hierarchy "PS2_Demo:KeyboardInput" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 149
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(276): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 276
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(278): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 278
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(280): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 280
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(282): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 282
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(283): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 283
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(284): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 284
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(287): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 287
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(288): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 288
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(290): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 290
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(291): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 291
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(292): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 292
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(294): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 294
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(296): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 296
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(298): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 298
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(299): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 299
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(300): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 300
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(307): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 307
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(308): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 308
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(310): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 310
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(311): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 311
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(312): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 312
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(314): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 314
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(316): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 316
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(318): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 318
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(319): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 319
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(320): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 320
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(323): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 323
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(324): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 324
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(326): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 326
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(327): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 327
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(328): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 328
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(330): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 330
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(332): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 332
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(334): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 334
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(335): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 335
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(336): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 336
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(343): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 343
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(344): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 344
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(346): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 346
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(347): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 347
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(348): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 348
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(350): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 350
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(352): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 352
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(354): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 354
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(355): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 355
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(356): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 356
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(359): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 359
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(360): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 360
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(362): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 362
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(363): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 363
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(364): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 364
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(366): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 366
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(368): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 368
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(370): truncated value with size 32 to match size of target (8) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 370
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(371): truncated value with size 32 to match size of target (7) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 371
+Warning (10230): Verilog HDL assignment warning at vga_plot.v(372): truncated value with size 32 to match size of target (4) File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 372
+Warning (10030): Net "current_state.S_IDLE" at vga_plot.v(77) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 77
+Warning (10030): Net "current_state.S_RESET" at vga_plot.v(77) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 77
+Warning (10030): Net "current_state.S_VOLUME_BOX" at vga_plot.v(77) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 77
+Warning (10030): Net "current_state.S_PITCH_BOX" at vga_plot.v(77) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 77
+Warning (10030): Net "current_state.S_DISTORTION_BOX" at vga_plot.v(77) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 77
+Warning (10030): Net "current_state.S_DRAW_VOLUME" at vga_plot.v(77) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 77
+Warning (10030): Net "current_state.S_DRAW_PITCH" at vga_plot.v(77) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 77
+Warning (10030): Net "current_state.S_DRAW_DISTORTION" at vga_plot.v(77) has no driver or initial value, using a default initial value '0' File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/vga_plot.v Line: 77
+Info (12128): Elaborating entity "PS2_Demo" for hierarchy "PS2_Demo:KeyboardInput" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 152
 Info (10264): Verilog HDL Case Statement information at PS2_Demo.v(294): all case item expressions in this case statement are onehot File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Demo.v Line: 294
-Info (12128): Elaborating entity "PS2_Controller" for hierarchy "PS2_Controller:PS2" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 164
+Info (12128): Elaborating entity "PS2_Controller" for hierarchy "PS2_Controller:PS2" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 167
 Info (12128): Elaborating entity "Altera_UP_PS2_Data_In" for hierarchy "PS2_Controller:PS2|Altera_UP_PS2_Data_In:PS2_Data_In" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Controller.v Line: 246
 Info (12128): Elaborating entity "Altera_UP_PS2_Command_Out" for hierarchy "PS2_Controller:PS2|Altera_UP_PS2_Command_Out:PS2_Command_Out" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/PS2_Controller.v Line: 266
-Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 173
+Info (12128): Elaborating entity "Hexadecimal_To_Seven_Segment" for hierarchy "Hexadecimal_To_Seven_Segment:Segment0" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 176
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "VGA_SYNC_N" is stuck at VCC File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 39
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 27 registers lost all their fanouts during netlist optimizations.
+Info (17049): 76 registers lost all their fanouts during netlist optimizations.
 Warning (20013): Ignored 385 assignments for entity "DE1_SoC" -- entity does not exist in design
     Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_CS_N -entity DE1_SoC was ignored
     Warning (20014): Assignment for entity set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to ADC_DIN -entity DE1_SoC was ignored
@@ -1797,18 +1780,18 @@ Warning (21074): Design contains 7 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
     Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
     Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/chris/Downloads/FPGA_VGA_and_Keyboard/top_module.v Line: 23
-Info (21057): Implemented 437 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 470 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
     Info (21059): Implemented 57 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 326 logic cells
+    Info (21061): Implemented 359 logic cells
     Info (21064): Implemented 36 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 504 warnings
-    Info: Peak virtual memory: 4845 megabytes
-    Info: Processing ended: Sat Dec 02 02:10:10 2023
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:10
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 478 warnings
+    Info: Peak virtual memory: 4865 megabytes
+    Info: Processing ended: Sat Dec 02 03:59:22 2023
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:18
 
 
 +------------------------------------------+

@@ -2,6 +2,9 @@ module vga_plot (
 	// Inputs
 	Clock,
 	Reset,
+	VolumeOn,
+	PitchOn,
+	DistortionOn,
 	VolumeTurnedOn,
 	PitchTurnedOn,
 	DistortionTurnedOn,
@@ -29,16 +32,12 @@ module vga_plot (
 
 parameter 	S_IDLE 				= 4'd0,
 				S_RESET				= 4'd1,
-				S_VOLUME_ON 		= 4'd2,
-				S_VOLUME_OFF 		= 4'd3,
-				S_DISTORTION_ON 	= 4'd4,
-				S_DISTORTION_OFF 	= 4'd5,
-				S_PITCH_ON 			= 4'd6,
-				S_PITCH_OFF 		= 4'd7,
-				S_EFFECT 			= 4'd8,
-				S_DRAW_VOLUME 		= 4'd9,
-				S_DRAW_PITCH		= 4'd10,
-				S_DRAW_DISTORTION	= 4'd11;
+				S_VOLUME_BOX 		= 4'd2,
+				S_PITCH_BOX 		= 4'd3,
+				S_DISTORTION_BOX 	= 4'd4,
+				S_DRAW_VOLUME 		= 4'd5,
+				S_DRAW_PITCH		= 4'd6,
+				S_DRAW_DISTORTION	= 4'd7;
 
 /*****************************************************************************
  *                             Port Declarations                             *
@@ -47,6 +46,9 @@ parameter 	S_IDLE 				= 4'd0,
 // Inputs
 input 		Clock;
 input 		Reset;
+input 		VolumeOn;
+input			PitchOn;
+input 		DistortionOn;
 input 		VolumeTurnedOn;
 input 		PitchTurnedOn;
 input 		DistortionTurnedOn;
@@ -74,15 +76,24 @@ output reg			writeEn;
 // Internal Registers
 reg		[3:0] current_state;
 reg		[3:0] next_state;
-reg 			 	Done;
+reg 			 	Idle;
+reg				Resetting;
+reg 				DrawVolumeBox;
+reg				DrawPitchBox;
+reg				DrawDistortionBox;
+reg				DrawVolumeLine;
+reg				DrawPitchLine;
+reg				DrawDistortionLine;
 reg 		[4:0] loopX;
 reg 		[3:0] loopY;
 reg		[3:0]	loop1;
 reg		[3:0] loop2;
 reg		[3:0] loop3;
+reg		[3:0] loopS;
+reg		[3:0] loopD;
 
-reg 		BoxDoneDraw;
-reg		LineDoneDraw;
+
+
 
 /*****************************************************************************
  *                             Sequential Logic                              *
@@ -94,18 +105,12 @@ begin
 		S_IDLE: begin
 			if (Reset) begin
 				next_state = S_RESET;
-			end else if (VolumeTurnedOn) begin	
-				next_state = S_VOLUME_ON;
-			end else if (VolumeTurnedOff) begin	
-				next_state = S_VOLUME_OFF;
-			end else if (PitchTurnedOn) begin 	
-				next_state = S_PITCH_ON;
-			end else if (PitchTurnedOff) begin 	
-				next_state = S_PITCH_OFF;
-			end else if (DistortionTurnedOn) begin	
-				next_state = S_DISTORTION_ON;
-			end else if (DistortionTurnedOff) begin
-				next_state = S_DISTORTION_OFF;
+			end else if (VolumeTurnedOn || VolumeTurnedOff) begin	
+				next_state = S_VOLUME_BOX;
+			end else if (PitchTurnedOn || PitchTurnedOff) begin 	
+				next_state = S_PITCH_BOX;
+			end else if (DistortionTurnedOn || DistortionTurnedOff) begin	
+				next_state = S_DISTORTION_BOX;
 			end else if (EffectGo && VolumeGo) begin
 				next_state = S_DRAW_VOLUME;
 			end else if (EffectGo && PitchGo) begin
@@ -123,46 +128,25 @@ begin
 				next_state = S_RESET;
 			end
 		end
-		S_VOLUME_ON: begin
+		S_VOLUME_BOX: begin
 			if (loopX == 16 && loopY == 6) begin
 				next_state = S_IDLE;
 			end else begin
-				next_state = S_VOLUME_ON;
+				next_state = S_VOLUME_BOX;
 			end
 		end
-		S_VOLUME_OFF: begin
-			if (loopX == 16 && loopY == 6) begin
-				next_state = S_IDLE;
-			end else begin
-				next_state = S_VOLUME_OFF;
-			end
-		end
-		S_PITCH_ON: begin
+		S_PITCH_BOX: begin
 			if (loopX == 16 && loopY == 6) begin
 				next_state <= S_IDLE;
 			end else begin
-				next_state <= S_PITCH_ON;
+				next_state <= S_PITCH_BOX;
 			end
 		end
-		S_PITCH_OFF: begin
+		S_DISTORTION_BOX: begin
 			if (loopX == 16 && loopY == 6) begin
 				next_state = S_IDLE;
 			end else begin
-				next_state = S_PITCH_OFF;
-			end
-		end
-		S_DISTORTION_ON: begin
-			if (loopX == 16 && loopY == 6) begin
-				next_state = S_IDLE;
-			end else begin
-				next_state = S_PITCH_ON;
-			end
-		end
-		S_DISTORTION_OFF: begin
-			if (loopX == 16 && loopY == 6) begin
-				next_state = S_IDLE;
-			end else begin
-				next_state = S_VOLUME_ON;
+				next_state = S_PITCH_BOX;
 			end
 		end
 		S_DRAW_VOLUME: begin
@@ -194,332 +178,203 @@ end
 always @(posedge Clock)
 begin
 	case (current_state)
-		S_IDLE: begin 
+		S_IDLE: begin
+			Idle = 1'b1;
 			Resetting = 1'b0;
 			DrawVolumeBox = 1'b0;
 			DrawPitchBox = 1'b0;
 			DrawDistortionBox = 1'b0;
 			DrawVolumeLine = 1'b0;
-			DrawPitchGo = 1'b0;
-			Draw
+			DrawPitchLine = 1'b0;
+			DrawDistortionLine = 1'b0;
 		end
 		S_RESET: begin Resetting = 1'b1; end
-		S_VOLUME_ON: begin DrawVolumeBox = 1'b1; end
-		S_VOLUME_OFF: begin DrawVolumeBox = 1'b1; end
-		S_PITCH_ON: begin DrawPitchBox = 1'b1; end
-		S_PITCH_OFF: begin DrawPitchBox = 1'b1; end
-		S_DISTORTION_ON: begin DrawDistortionBox = 1'b1; end
-		S_DISTORTION_OFF: begin DrawDistortionBox = 1'b1; end
-		S_DRAW_VOLUME: begin end
-		S_DRAW_PITCH: begin end
-		S_DRAW_DISTORTION: begin end
+		S_VOLUME_BOX: begin DrawVolumeBox = 1'b1; end
+		S_PITCH_BOX: begin DrawPitchBox = 1'b1; end
+		S_DISTORTION_BOX: begin DrawDistortionBox = 1'b1; end
+		S_DRAW_VOLUME: begin DrawVolumeLine = 1'b1; end
+		S_DRAW_PITCH: begin DrawPitchLine = 1'b1; end
+		S_DRAW_DISTORTION: begin DrawDistortionLine = 1'b1; end
 	endcase
 end
 		
-	
 
-always @(*)
+always @(posedge Clock)
 begin
 	writeEn = 1'b0;
-	case (current_state)
-		S_IDLE: begin 
-			loopX 			= 5'b0;
-			loopY 			= 5'b0;
-			BoxDoneDraw 	= 1'b0;
-			LineDoneDraw 	= 1'b0;
+	colour <= 12'hc38;
+	
+	if (Idle) begin
+		loopX <= 5'd0;
+		loopY <= 4'd0;
+		loop1 <= 4'd0;
+		loop2 <= 4'd0;
+		loop3 <= 4'd0;
+	end
+	
+	else if (Resetting) begin
+		if (loop1 != 7) begin
+			x[7:0] <= 33;
+			y[6:0] <= 52 - loop1;
+			loop1 <= loop1 + 1'b1;
+		end else if (loop2 != 7) begin
+			x[7:0] <= 80;
+			y[6:0] <= 52 - loop2;
+			loop2 <= loop2 + 1'b1;
+		end else if (loop3 != 16) begin
+			x[7:0] <= 127;
+			y[6:0] <= 52- loop3;
+			loop3 <= loop3 + 1'b1;
+		end else begin
+			loop1 <= 4'd0;
+			loop2 <= 4'd0;
+			loop3 <= 4'd0;
 		end
-		S_RESET: begin
-			//
+	end 
+	
+	else if (DrawVolumeBox) begin
+		if (VolumeOn) begin colour <= 12'h2c3; end 
+		else begin colour <= 12'h222; end
+		if ((loopX == 16) && (loopY != 6)) begin
+			loopX <= 4'd0;
+			loopY <= loopY + 1'b1;
+		end else begin loopX <= loopX + 1'b1; end
+		x[7:0] <= loopX + 26;
+		y[6:0] <= loopY + 21;
+	end 
+	
+	else if (DrawPitchBox) begin
+		if (PitchOn) begin colour <= 12'h2c3; end 
+		else begin colour <= 12'h222; end
+		if ((loopX == 16) && (loopY != 6)) begin
+			loopX <= 4'd0;
+			loopY <= loopY + 1'b1;
+		end else begin loopX <= loopX + 1'b1; end
+		x[7:0] <= loopX + 73;
+		y[6:0] <= loopY + 21;
+	end 
+	
+	else if (DrawDistortionBox) begin
+		if (DistortionOn) begin colour <= 12'h2c3; end 
+		else begin colour <= 12'h222; end
+		if ((loopX == 16) && (loopY != 6)) begin
+			loopX <= 4'd0;
+			loopY <= loopY + 1'b1;
+		end else begin loopX <= loopX + 1'b1; end
+		x[7:0] <= loopX + 120;
+		y[6:0] <= loopY + 21;
+	end
+	
+	else if (DrawVolumeLine) begin
+		if (volume_data >= 7'd92 || volume_data <= 7'd8) begin
+			x[7:0] <= 33;
+			y[6:0] <= 52 - loopS;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (volume_data < 7'd19) begin
+			x[7:0] <= 33 + loopD;
+			y[6:0] <= 52 - loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
+		end else if (volume_data < 7'd31) begin
+			x[7:0] <= 33 + loopS;
+			y[6:0] <= 52;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (volume_data < 7'd43) begin
+			x[7:0] = 33 + loopD;
+			y[6:0] = 52 + loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
+		end else if (volume_data < 7'd55) begin
+			x[7:0] <= loopX;
+			y[6:0] <= 52 + loopS;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (volume_data < 7'd67) begin
+			x[7:0] <= 33 - loopD;
+			y[6:0] <= 52 + loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
+		end else if (volume_data < 7'd79) begin
+			x[7:0] <= 33 - loopS;
+			y[6:0] <= 52;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (volume_data < 7'd91) begin
+			x[7:0] <= 33 - loopD;
+			y[6:0] <= 52 - loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
 		end
-		S_VOLUME_ON: begin
-			colour = 12'h2c3;
-			x[7:0] = loopX + 26;
-			y[6:0] = loopX + 21;
-			writeEn = 1'b1;
-			if (loopX != 16) begin
-				loopX = loopX + 1;
-			end else if (loopY != 6) begin
-				loopY = loopY + 1;
-			end else begin
-				BoxDoneDraw = 1'b1;
-			end
+	end
+	
+	else if (DrawPitchLine) begin
+		if (pitch_data >= 7'd92 || pitch_data <= 7'd8) begin
+			x[7:0] <= 33;
+			y[6:0] <= 52 - loopS;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (pitch_data < 7'd19) begin
+			x[7:0] <= 33 + loopD;
+			y[6:0] <= 52 - loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
+		end else if (pitch_data < 7'd31) begin
+			x[7:0] <= 33 + loopS;
+			y[6:0] <= 52;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (pitch_data < 7'd43) begin
+			x[7:0] = 33 + loopD;
+			y[6:0] = 52 + loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
+		end else if (pitch_data < 7'd55) begin
+			x[7:0] <= loopX;
+			y[6:0] <= 52 + loopS;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (pitch_data < 7'd67) begin
+			x[7:0] <= 33 - loopD;
+			y[6:0] <= 52 + loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
+		end else if (pitch_data < 7'd79) begin
+			x[7:0] <= 33 - loopS;
+			y[6:0] <= 52;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (pitch_data < 7'd91) begin
+			x[7:0] <= 33 - loopD;
+			y[6:0] <= 52 - loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
 		end
-		S_VOLUME_OFF: begin
-			colour = 12'h222;
-			x[7:0] = loopX + 26;
-			y[6:0] = loopX + 21;
-			writeEn = 1'b1;
-			if (loopX != 16) begin
-				loopX = loopX + 1;
-			end else if (loopY != 6) begin
-				loopY = loopY + 1;
-			end else begin
-				BoxDoneDraw = 1'b1;
-			end
+	end
+	
+	else if (DrawDistortionLine) begin
+		if (distortion_data >= 7'd92 || distortion_data <= 7'd8) begin
+			x[7:0] <= 33;
+			y[6:0] <= 52 - loopS;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (distortion_data < 7'd19) begin
+			x[7:0] <= 33 + loopD;
+			y[6:0] <= 52 - loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
+		end else if (distortion_data < 7'd31) begin
+			x[7:0] <= 33 + loopS;
+			y[6:0] <= 52;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (distortion_data < 7'd43) begin
+			x[7:0] = 33 + loopD;
+			y[6:0] = 52 + loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
+		end else if (distortion_data < 7'd55) begin
+			x[7:0] <= loopX;
+			y[6:0] <= 52 + loopS;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (distortion_data < 7'd67) begin
+			x[7:0] <= 33 - loopD;
+			y[6:0] <= 52 + loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
+		end else if (distortion_data < 7'd79) begin
+			x[7:0] <= 33 - loopS;
+			y[6:0] <= 52;
+			if (loopS != 7) begin loopS <= loopS + 1; end
+		end else if (distortion_data < 7'd91) begin
+			x[7:0] <= 33 - loopD;
+			y[6:0] <= 52 - loopD;
+			if (loopD != 6) begin loopD <= loopD + 1; end
 		end
-		S_PITCH_ON: begin
-			colour = 12'h2c3;
-			x[7:0] = loopX + 73;
-			y[6:0] = loopX + 21;
-			writeEn = 1'b1;
-			if (loopX != 16) begin
-				loopX = loopX + 1;
-			end else if (loopY != 6) begin
-				loopY = loopY + 1;
-			end else begin
-				BoxDoneDraw = 1'b1;
-			end
-		end
-		S_PITCH_OFF: begin
-			colour = 12'h222;
-			x[7:0] = loopX + 73;
-			y[6:0] = loopX + 21;
-			writeEn = 1'b1;
-			if (loopX != 16) begin
-				loopX = loopX + 1;
-			end else if (loopY != 6) begin
-				loopY = loopY + 1;
-			end else begin
-				BoxDoneDraw = 1'b1;
-			end
-		end
-		S_DISTORTION_ON: begin
-			colour = 12'h2c3;
-			x[7:0] = loopX + 120;
-			y[6:0] = loopX + 21;
-			writeEn = 1'b1;
-			if (loopX != 16) begin
-				loopX = loopX + 1;
-			end else if (loopY != 6) begin
-				loopY = loopY + 1;
-			end else begin
-				BoxDoneDraw = 1'b1;
-			end
-		end
-		S_DISTORTION_OFF: begin
-			colour = 12'h222;
-			x[7:0] = loopX + 120;
-			y[6:0] = loopX + 21;
-			writeEn = 1'b1;
-			if (loopX != 16) begin
-				loopX = loopX + 1;
-			end else if (loopY != 6) begin
-				loopY = loopY + 1;
-			end else begin
-				BoxDoneDraw = 1'b1;
-			end
-		end
-		S_EFFECT: begin
-			//
-		end
-		S_DRAW_VOLUME: begin
-			colour = 12'hc38;
-			if (volume_data >= 7'd92 || volume_data <= 7'd8) begin
-				x[7:0] = 33;
-				y[6:0] = 52 - loopX;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (volume_data < 7'd19) begin
-				x[7:0] = 33 + loopX;
-				y[6:0] = 52 - loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (volume_data < 7'd31) begin
-				x[7:0] = 33 + loopX;
-				y[6:0] = 52;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (volume_data < 7'd43) begin
-				x[7:0] = 33 + loopX;
-				y[6:0] = 52 + loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (volume_data < 7'd55) begin
-				x[7:0] = loopX;
-				y[6:0] = 52 + loopX;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (volume_data < 7'd67) begin
-				x[7:0] = 33 - loopX;
-				y[6:0] = 52 + loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (volume_data < 7'd79) begin
-				x[7:0] = 33 - loopX;
-				y[6:0] = 52;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (volume_data < 7'd91) begin
-				x[7:0] = 33 - loopX;
-				y[6:0] = 52 - loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end
-			writeEn = 1'b1;
-		end
-		S_DRAW_PITCH: begin
-			colour = 12'hc38;
-			if (pitch_data >= 7'd92 || pitch_data <= 7'd8) begin
-				x[7:0] = 33;
-				y[6:0] = 52 - loopX;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (pitch_data < 7'd19) begin
-				x[7:0] = 33 + loopX;
-				y[6:0] = 52 - loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (pitch_data < 7'd31) begin
-				x[7:0] = 33 + loopX;
-				y[6:0] = 52;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (pitch_data < 7'd43) begin
-				x[7:0] = 33 + loopX;
-				y[6:0] = 52 + loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (pitch_data < 7'd55) begin
-				x[7:0] = loopX;
-				y[6:0] = 52 + loopX;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (pitch_data < 7'd67) begin
-				x[7:0] = 33 - loopX;
-				y[6:0] = 52 + loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (pitch_data < 7'd79) begin
-				x[7:0] = 33 - loopX;
-				y[6:0] = 52;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (pitch_data < 7'd91) begin
-				x[7:0] = 33 - loopX;
-				y[6:0] = 52 - loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end
-			writeEn = 1'b1;
-		end
-		S_DRAW_DISTORTION: begin
-			colour = 12'hc38;
-			if (distortion_data >= 7'd92 || distortion_data <= 7'd8) begin
-				x[7:0] = 33;
-				y[6:0] = 52 - loopX;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (distortion_data < 7'd19) begin
-				x[7:0] = 33 + loopX;
-				y[6:0] = 52 - loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (distortion_data < 7'd31) begin
-				x[7:0] = 33 + loopX;
-				y[6:0] = 52;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (volume_data < 7'd43) begin
-				x[7:0] = 33 + loopX;
-				y[6:0] = 52 + loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (distortion_data < 7'd55) begin
-				x[7:0] = loopX;
-				y[6:0] = 52 + loopX;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (distortion_data < 7'd67) begin
-				x[7:0] = 33 - loopX;
-				y[6:0] = 52 + loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (distortion_data < 7'd79) begin
-				x[7:0] = 33 - loopX;
-				y[6:0] = 52;
-				if (loopX != 7) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end else if (distortion_data < 7'd91) begin
-				x[7:0] = 33 - loopX;
-				y[6:0] = 52 - loopX;
-				if (loopX != 6) begin
-					loopX = loopX + 1;
-				end else begin
-					LineDoneDraw = 1'b1;
-				end
-			end
-			writeEn = 1'b1;
-		end
-	endcase
-end
+	end
 
+	writeEn <= 1'b1;
+	
+end
+	
 endmodule
