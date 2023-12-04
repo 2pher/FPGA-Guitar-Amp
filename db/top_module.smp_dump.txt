@@ -1,4 +1,10 @@
 
+State Machine - |top_module|AudioTesting:Audio|avconf:mic_or_line_in|mSetup_ST
+Name mSetup_ST.0000 mSetup_ST.0010 mSetup_ST.0001 
+mSetup_ST.0000 0 0 0 
+mSetup_ST.0001 1 0 1 
+mSetup_ST.0010 1 1 0 
+
 State Machine - |top_module|PS2_Controller:PS2|s_ps2_transceiver
 Name s_ps2_transceiver.PS2_STATE_3_END_TRANSFER s_ps2_transceiver.PS2_STATE_2_COMMAND_OUT s_ps2_transceiver.PS2_STATE_1_DATA_IN s_ps2_transceiver.PS2_STATE_0_IDLE s_ps2_transceiver.PS2_STATE_4_END_DELAYED 
 s_ps2_transceiver.PS2_STATE_0_IDLE 0 0 0 0 0 
@@ -44,20 +50,13 @@ current_state.S_L3_WAIT 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1
 current_state.S_SETDATA 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
 current_state.S_OUTPUT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
 
-State Machine - |top_module|PS2_Demo:KeyboardInput|next_state
-Name next_state.S_OUTPUT next_state.S_SETDATA next_state.S_L3_WAIT next_state.S_L3_SAVE next_state.S_L3 next_state.S_L2_WAIT next_state.S_L2_SAVE next_state.S_L2 next_state.S_L1_WAIT next_state.S_L1_SAVE next_state.S_L1 next_state.S_DISTORTION next_state.S_PITCH next_state.S_VOLUME next_state.S_MAIN 
-next_state.S_MAIN 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
-next_state.S_VOLUME 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
-next_state.S_PITCH 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
-next_state.S_DISTORTION 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
-next_state.S_L1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
-next_state.S_L1_SAVE 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
-next_state.S_L1_WAIT 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
-next_state.S_L2 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
-next_state.S_L2_SAVE 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
-next_state.S_L2_WAIT 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
-next_state.S_L3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
-next_state.S_L3_SAVE 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
-next_state.S_L3_WAIT 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
-next_state.S_SETDATA 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
-next_state.S_OUTPUT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+State Machine - |top_module|vga_plot:VGAOutput|current_state
+Name current_state.S_DRAW_DISTORTION current_state.S_DRAW_PITCH current_state.S_DRAW_VOLUME current_state.S_DISTORTION_BOX current_state.S_PITCH_BOX current_state.S_VOLUME_BOX current_state.S_RESET current_state.S_IDLE 
+current_state.S_IDLE 0 0 0 0 0 0 0 0 
+current_state.S_RESET 0 0 0 0 0 0 1 1 
+current_state.S_VOLUME_BOX 0 0 0 0 0 1 0 1 
+current_state.S_PITCH_BOX 0 0 0 0 1 0 0 1 
+current_state.S_DISTORTION_BOX 0 0 0 1 0 0 0 1 
+current_state.S_DRAW_VOLUME 0 0 1 0 0 0 0 1 
+current_state.S_DRAW_PITCH 0 1 0 0 0 0 0 1 
+current_state.S_DRAW_DISTORTION 1 0 0 0 0 0 0 1 

@@ -18,7 +18,7 @@
 #
 # Quartus Prime
 # Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-# Date created = 05:02:56  November 30, 2023
+# Date created = 12:33:35  December 03, 2023
 #
 # -------------------------------------------------------------------------- #
 #
@@ -40,23 +40,25 @@ set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
 set_global_assignment -name TOP_LEVEL_ENTITY top_module
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.0.0
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "05:02:56  NOVEMBER 30, 2023"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:33:35  DECEMBER 03, 2023"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.0.0 Lite Edition"
-set_global_assignment -name VERILOG_FILE PS2_Demo.v
-set_global_assignment -name VERILOG_FILE PS2_Controller.v
-set_global_assignment -name VERILOG_FILE Hexadecimal_To_Seven_Segment.v
-set_global_assignment -name VERILOG_FILE Altera_UP_PS2_Data_In.v
-set_global_assignment -name VERILOG_FILE Altera_UP_PS2_Command_Out.v
-set_global_assignment -name QIP_FILE vga_pll.qip
-set_global_assignment -name VERILOG_FILE vga_pll.v
-set_global_assignment -name VERILOG_FILE vga_controller.v
-set_global_assignment -name VERILOG_FILE vga_address_translator.v
-set_global_assignment -name VERILOG_FILE vga_adapter.v
+set_global_assignment -name MIF_FILE AMP_BACKGROUND.mif
+set_global_assignment -name VERILOG_FILE "Top Modules/PS2_Demo.v"
+set_global_assignment -name VERILOG_FILE "Top Modules/vga_plot.v"
+set_global_assignment -name VERILOG_FILE "Top Modules/top_module.v"
+set_global_assignment -name VERILOG_FILE vga_adapter/vga_pll.v
+set_global_assignment -name VERILOG_FILE vga_adapter/vga_controller.v
+set_global_assignment -name VERILOG_FILE vga_adapter/vga_address_translator.v
+set_global_assignment -name VERILOG_FILE vga_adapter/vga_adapter.v
+set_global_assignment -name QIP_FILE vga_adapter/vga_pll.qip
+set_global_assignment -name VERILOG_FILE ps2_controller/PS2_Controller.v
+set_global_assignment -name VERILOG_FILE ps2_controller/Hexadecimal_To_Seven_Segment.v
+set_global_assignment -name VERILOG_FILE ps2_controller/Altera_UP_PS2_Data_In.v
+set_global_assignment -name VERILOG_FILE ps2_controller/Altera_UP_PS2_Command_Out.v
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
-set_global_assignment -name VERILOG_FILE top_module.v
 set_location_assignment PIN_AJ4 -to ADC_CS_N
 set_location_assignment PIN_AK4 -to ADC_DIN
 set_location_assignment PIN_AK3 -to ADC_DOUT
@@ -703,6 +705,17 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HPS_USB_STP -entity 
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VERILOG_FILE vga_plot.v
-set_global_assignment -name MIF_FILE AMP_BACKGROUND.mif
+set_global_assignment -name VERILOG_FILE Audio_Controller/Dec1/AudioTesting.v
+set_global_assignment -name VERILOG_FILE Audio_Controller/Audio_Clock.v
+set_global_assignment -name QIP_FILE Audio_Controller/Audio_Clock.qip
+set_global_assignment -name VERILOG_FILE Audio_Controller/Altera_UP_Audio_Out_Serializer.v
+set_global_assignment -name VERILOG_FILE Audio_Controller/Altera_UP_Audio_In_Deserializer.v
+set_global_assignment -name VERILOG_FILE Audio_Controller/Altera_UP_Audio_Bit_Counter.v
+set_global_assignment -name VERILOG_FILE Audio_Controller/Audio_Controller.v
+set_global_assignment -name VERILOG_FILE Audio_Controller/Altera_UP_SYNC_FIFO.v
+set_global_assignment -name VERILOG_FILE Audio_Controller/Altera_UP_Clock_Edge.v
+set_global_assignment -name VERILOG_FILE avconf/I2C_Controller.v
+set_global_assignment -name VERILOG_FILE avconf/avconf.v
+set_global_assignment -name VERILOG_FILE ps2_controller/keyboardInput.v
+set_global_assignment -name VERILOG_FILE ps2_controller/PS2_Demo.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

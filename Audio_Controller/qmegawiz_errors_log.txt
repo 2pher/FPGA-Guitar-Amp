@@ -1,0 +1,82 @@
+
+
+C:/Users/bran_/Downloads/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.v
+
+Nov 21 10PM:09:53>: Error in CNX file format.
+
+Error messages are listed in file
+C:/Users/bran_/Downloads/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.v
+
+Dec 02 03PM:16:29>: Error in CNX file format.
+
+Error messages are listed in file
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.v
+
+Dec 02 03PM:17:52>: Error in CNX file format.
+
+Error messages are listed in file
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.v
+
+Dec 02 03PM:18:51>: Error in CNX file format.
+
+Error messages are listed in file
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.v
+
+Dec 02 03PM:23:18>: Error in CNX file format.
+
+Error messages are listed in file
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.v
+
+Dec 02 03PM:31:29>: Error in CNX file format.
+
+Error messages are listed in file
+C:/intelFPGA_lite/18.0/Project/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+G:/My Drive/UofT Engineering/Fall 2023/ECE241H1 F Digital Systems/ECE241 Project/Dec3/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.v
+
+Dec 03 11AM:33:57>: Error in CNX file format.
+
+Error messages are listed in file
+G:/My Drive/UofT Engineering/Fall 2023/ECE241H1 F Digital Systems/ECE241 Project/Dec3/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+G:/My Drive/UofT Engineering/Fall 2023/ECE241H1 F Digital Systems/ECE241 Project/Dec3/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.v
+
+Dec 03 12PM:20:05>: Error in CNX file format.
+
+Error messages are listed in file
+G:/My Drive/UofT Engineering/Fall 2023/ECE241H1 F Digital Systems/ECE241 Project/Dec3/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+G:/My Drive/UofT Engineering/Fall 2023/ECE241H1 F Digital Systems/ECE241 Project/Dec3/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.v
+
+Dec 03 12PM:35:31>: Error in CNX file format.
+
+Error messages are listed in file
+G:/My Drive/UofT Engineering/Fall 2023/ECE241H1 F Digital Systems/ECE241 Project/Dec3/Audio/Audio_Demo/Audio_Demo/Audio_Controller/Audio_Clock.cnxerr.
+
+Can't create the custom megafunction variation file(s)

@@ -4,31 +4,23 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "HEX0[0]",
+					"name" : "LEDR[0]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[1]",
+					"name" : "LEDR[1]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[2]",
+					"name" : "LEDR[2]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[3]",
+					"name" : "LEDR[3]",
 					"strict" : false
 				},
 				{
-					"name" : "HEX0[4]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX0[5]",
-					"strict" : false
-				},
-				{
-					"name" : "HEX0[6]",
+					"name" : "LEDR[9]",
 					"strict" : false
 				},
 				{
@@ -224,11 +216,35 @@
 					"strict" : false
 				},
 				{
+					"name" : "AUD_DACDAT",
+					"strict" : false
+				},
+				{
+					"name" : "FPGA_I2C_SCLK",
+					"strict" : false
+				},
+				{
 					"name" : "PS2_CLK",
 					"strict" : false
 				},
 				{
 					"name" : "PS2_DAT",
+					"strict" : false
+				},
+				{
+					"name" : "AUD_BCLK",
+					"strict" : false
+				},
+				{
+					"name" : "AUD_ADCLRCK",
+					"strict" : false
+				},
+				{
+					"name" : "AUD_DACLRCK",
+					"strict" : false
+				},
+				{
+					"name" : "FPGA_I2C_SDAT",
 					"strict" : false
 				},
 				{
@@ -240,11 +256,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "SW[7]",
+					"name" : "SW[9]",
 					"strict" : false
 				},
 				{
-					"name" : "SW[9]",
+					"name" : "KEY[3]",
 					"strict" : false
 				},
 				{
@@ -256,11 +272,15 @@
 					"strict" : false
 				},
 				{
-					"name" : "KEY[3]",
+					"name" : "SW[7]",
 					"strict" : false
 				},
 				{
 					"name" : "KEY[1]",
+					"strict" : false
+				},
+				{
+					"name" : "AUD_ADCDAT",
 					"strict" : false
 				}
 			]

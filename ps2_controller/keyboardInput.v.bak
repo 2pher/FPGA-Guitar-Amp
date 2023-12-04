@@ -1,0 +1,234 @@
+module ps2(
+	input wire Clock, PS2C, PS2D;
+	output reg flag;
+	output reg [7:0] key
+);
+	
+	reg [3:0] counter;
+	reg [7:0] data_curr;
+	reg error, parity, pre_clk;
+	reg [11:0] ticks;
+	
+	initial begin
+		counter 		= 4'h1;
+		data_curr 	= 8'hF0;
+		error 		= 1'd0;
+		flag 			= 1'b0;
+		key 			= 8'hF0;
+		parity 		= 1'b1;
+		pre_clk 		= 1'b0;
+		ticks 		= 12'd0;
+	end
+	
+	always @(posedge Clock) begin
+		ticks = ticks + 12'd1;
+		if (ticks >= 4000) begin
+			ticks = 12'd0;
+			if ((~PS2C) && pre_clk) begin
+				case(counter)
+					1:;
+					2: begin data_curr[0] <= PS2D; parity <= parity ^ PS2D; end
+					3: begin data_curr[1] <= PS2D; parity <= parity ^ PS2D; end
+					4: begin data_curr[2] <= PS2D; parity <= parity ^ PS2D; end
+					5: begin data_curr[3] <= PS2D; parity <= parity ^ PS2D; end
+					6: begin data_curr[4] <= PS2D; parity <= parity ^ PS2D; end
+					7: begin data_curr[5] <= PS2D; parity <= parity ^ PS2D; end
+					8: begin data_curr[6] <= PS2D; parity <= parity ^ PS2D; end
+					9: begin data_curr[7] <= PS2D; parity <= parity ^ PS2D; end
+				  10: begin flag = 1'b1; if (parity != PS2D) error <= 1;   end
+				  11: if (~error) flag = 1'b0;
+				endcase
+				if ((counter == 1) && (~PS2D)) begin
+					counter <= 4'd2;
+					parity <= 1;
+					error <= 0;
+				end else if ((counter >= 2) && (counter < 11))
+					counter <= counter + 4'h1;
+				else
+					counter <= 4'h1;
+			end
+			pre_clk <= PS2C;
+		end
+	end
+	
+	always @(negedge flag) begin
+		key <= data_curr;
+	end
+endmodule 
+
+module keyboardInput(
+	input wire Clock, Reset_n, Clock_PS2, data_PS2;
+	input wire LoadedNum1, LoadedNum2, LoadedNum3, Done;
+	//input wire Clock_PS2, // Keyboard operates on seperate clk--ASK ABOUT THIS!!!
+	output reg [10:0] final_data,
+	output reg num_key_pressed, enter_key_pressed;
+);
+
+//			Data from the PS2 keyboard is sent in as 11-bits which is 
+//			described as follows:
+//				shift_register[9]       : Start bit (must go high->low
+//				shift_register[7:0]     : 8 inputted data bits
+//			For the purposes of our final project, we will use:
+//				- Keys 0-9 (hexadecimal 0x29 - 0x32)
+//					Key "0": 0x29
+//					Key "1": 0x22
+//					Key "2": 0x1E
+//					Key "3": 0x21
+//					Key "4": 0x2C
+//					Key "5": 0x32
+//					Key "6": 0x31
+//					Key "7": 0x23
+//					Key "8": 0x2B
+//					Key "9": 0x34
+//				- <Enter> to finalize input (hexadecimal 0x5A)
+//					Key "Enter": 0x5A
+	
+	reg [4:0] input_num;
+	reg [9:0] reg_input;
+	reg start_bit_detected; // This is when shift_register[9:8] == 2'b10;
+	
+	always @(posedge Clock || negedge Reset_n) begin
+		if (!Reset_n) begin
+			input_num 				<= 4'b0;
+			reg_input 				<= 10'b0;
+			final_data 				<= 11'b0;
+			start_bit_detected 	<= 1'b0;
+			num_key_pressed 		<= 1'b0;
+			enter_key_pressed 	<= 1'b0;
+		end
+		else begin
+			// Shift keyboard input on each clock cycle, sent through data_ps2
+			reg_input <= {reg_input[8:0], data_ps2};
+			
+			// Accepts keyboard input when most sig bit is logic-1, 2nd most is logic-0
+			start_bit_detected <= (reg_input[9:8] == 2'b10);
+			
+			if (start_bit_detected) begin // A key has been pressed!
+				// Check if number key has been pressed
+				// 	NOTE: that a numerical input is from 0x29 to 0x34 
+				if (reg_input[7:0] >= 8'h29 && reg_input[7:0] <= 8'h32) begin
+					// Number key has been pressed!
+					num_key_pressed <= 1'b1;
+					input_num <= reg_input[7:0] - 8'h28; // Convert to binary
+					
+					// Calculate final_data
+					// final_data = Num1*100 + Num2*10 + Num3
+					// Ex: 9->9->9->: final_data = 999
+					if (LoadedNum1) begin
+						final_data[10:0] <= (input_num[4:0] * 7'd100);
+					end
+					if (LoadedNum2) begin
+						final_data[10:0] <= (final_data + (input_num[4:0] * 4'd10));
+					end
+					if (LoadedNum3) begin
+						final_data[10:0] <= (final_data + input_num[4:0]);
+					end
+					
+				else num_key_pressed <= 1'b0; // Number key has not been pressed
+				end
+				
+				// Check if enter key has been pressed
+				if (reg_input[7:0] == 8'h5A) begin
+					  enter_key_pressed <= 1'b1;
+				else enter_key_pressed <= 1'b0;
+				end		
+			end
+			
+			if (Done) begin
+				// Check if final_data > 100, if so, set final_data = 100 (default)
+				if (final_data[10:0] > 7'd100) begin
+					final_data[10:0] <= 7'd100;
+				end
+			end	
+			
+		end
+	end
+endmodule
+
+module keyboardControl(
+	input wire Clock, Reset_n, iLoadNum, iLoadEnter,
+	output reg LoadNum1, LoadNum2, LoadNum3, oDone
+);
+	
+	reg [2:0] current_state, next_state;
+	
+	localparam	S_L1				= 3'd0;
+					S_L1_WAIT		= 3'd1;
+					S_L2				= 3'd2;
+					S_L2_WAIT		= 3'd3;
+					S_L3				= 3'd4;
+					S_L3_WAIT		= 3'd5;
+					S_SDATA			= 3'd6;
+					S_SDATA_WAIT	= 3'd7;
+					
+	always @(*) begin
+		case (current_state)
+			S_L1: begin
+				if (iLoadNum) next_state = S_L1_WAIT;
+				else next_state = S_L1;
+			end
+			
+			S_L1_WAIT: begin
+				if (iLoadNum) next_state = S_L1_WAIT;
+				else next_state = S_L2;
+			end
+			
+			S_L2: begin
+				if (iLoadNum) next_state = S_L2_WAIT;
+				else next_state = S_L2;
+			end
+			
+			S_L2_WAIT: begin
+				if (iLoadNum) next_state = S_L2_WAIT;
+				else next_state = S_L3;
+			end
+			
+			S_L3: begin
+				if (iLoadNum) next_state = S_L3_WAIT;
+				else next_state = S_L3;
+			end
+			
+			S_L3_WAIT: begin
+				if (iLoadNum) next_state = S_L3_WAIT;
+				else next_state = S_SDATA;
+			end
+				
+			S_SDATA: begin
+				if (iLoadEnter) next_state = S_SDATA_WAIT;
+				else next_state = S_SDATA;
+			end
+			
+			S_SDATA_WAIT: begin
+				if (iLoadEnter) next_state = S_SDATA_WAIT;
+				else next_state = S_L1;
+			end
+
+		endcase
+	end
+	
+	always @(*) begin
+		LoadNum1 = 1'b0;
+		LoadNum2 = 1'b0;
+		LoadNum3 = 1'b0;
+		oDone		= 1'b0;
+		
+		case (current_state)
+			S_L1: begin
+				LoadNum1 = 1'b1;
+			end
+			
+			S_L2: begin 
+				LoadNum2 = 1'b1;
+			end
+			
+			
+			S_L3: begin
+				LoadNum3 = 1'b1;
+			end
+			
+			S_SDATA: begin
+				oDone = 1'b1;
+			end
+		endcase
+	end	
+endmodule 
